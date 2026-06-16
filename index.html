@@ -3,273 +3,1199 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>會前學員洞察</title>
+<title>辯論場控 · G.R.A.C.E. Academy</title>
 <style>
-:root{--bg:#f5f1e8;--surface:#fff;--surface2:#ebe5d6;--border:#d4cab3;--border2:#cdc1a5;
---gold:#a8821e;--gold2:#c9a84c;--gold-bg:rgba(168,130,30,.08);
---green:#3d7a52;--green-bg:rgba(61,122,82,.1);--yellow:#a8821e;--yellow-bg:rgba(201,168,76,.12);
---red:#a8443a;--red-bg:rgba(168,68,58,.08);--blue:#3a5f8a;--purple:#7a5a8a;
---ink:#16140f;--muted:#8a8270;--dim:#b5ad98;
---r:8px;--serif:'Noto Serif TC',serif;--sans:'Noto Sans TC',system-ui,sans-serif;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.6;}
-.wrap{max-width:680px;margin:0 auto;padding:0 14px 60px;}
-.masthead{border-bottom:3px double var(--ink);padding:20px 0 14px;}
-.kicker{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600;}
-.masthead h1{font-family:var(--serif);font-size:24px;font-weight:800;margin-top:6px;}
-.masthead .sub{font-size:12px;color:var(--muted);margin-top:4px;}
-.search{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:9px 12px;font-size:14px;margin:12px 0;outline:none;}
-.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:4px;}
-.tab{flex-shrink:0;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid var(--border2);background:var(--surface);color:var(--muted);cursor:pointer;white-space:nowrap;}
-.tab.active{background:var(--gold-bg);border-color:var(--gold);color:var(--gold);}
-.group{margin:18px 0 8px;}
-.group-h{display:flex;align-items:baseline;gap:8px;padding-bottom:6px;border-bottom:2px solid var(--ink);}
-.group-icon{font-size:16px;}
-.group-t{font-family:var(--serif);font-size:16px;font-weight:800;}
-.group-c{font-size:12px;color:var(--muted);margin-left:auto;}
-.group-desc{font-size:11px;color:var(--muted);margin-top:4px;font-style:italic;}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);margin:8px 0;overflow:hidden;}
-.chead{padding:12px 14px;cursor:pointer;}
-.cname{font-size:15px;font-weight:700;}
-.ctags{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;}
-.tg{font-size:10px;padding:2px 8px;border-radius:10px;}
-.tg-lv{background:rgba(58,95,138,.1);color:var(--blue);}
-.tg-spend{background:var(--gold-bg);color:var(--gold);}
-.tg-ch{background:rgba(90,155,224,.12);color:var(--blue);}
-.tg-ch.sampler{background:var(--gold-bg);color:var(--gold);}
-.tg-ch.both{background:rgba(224,90,90,.12);color:#a8443a;}
-.sess-mini{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
-.st{font-size:9px;padding:2px 6px;border-radius:5px;border:1px solid transparent;}
-.st .stm{font-weight:700;margin-right:3px;}
-.st-full{background:var(--green-bg);color:var(--green);border-color:rgba(61,122,82,.25);}
-.st-norep{background:var(--yellow-bg);color:var(--gold);border-color:rgba(201,168,76,.25);}
-.st-rep{background:rgba(90,155,224,.1);color:var(--blue);border-color:rgba(90,155,224,.22);}
-.st-none{background:var(--surface2);color:var(--muted);border-color:var(--border2);}
-.cbody{display:none;border-top:1px solid var(--border);padding:12px 14px;}
-.cbody.open{display:block;}
-.chevron{font-size:11px;color:var(--dim);float:right;}
-.hl-row{display:flex;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:10px;}
-.hl-box{flex:1;background:var(--surface);padding:8px;text-align:center;min-width:0;}
-.hl-v{font-size:13px;font-weight:800;color:var(--gold);word-break:break-all;}
-.hl-l{font-size:9px;color:var(--muted);margin-top:2px;}
-.track-hero{background:var(--gold-bg);border:1.5px solid var(--gold);border-radius:var(--r);padding:10px;margin-bottom:10px;}
-.track-t{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:6px;}
-.glabel{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.05em;margin:12px 0 4px;padding-bottom:3px;border-bottom:1px solid var(--border);}
-.cs{display:flex;justify-content:space-between;padding:7px 10px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;margin-top:4px;cursor:pointer;font-size:12px;font-weight:600;}
-.cs .ct{color:var(--muted);font-weight:400;font-size:11px;}
-.cb{display:none;padding:8px 4px;}
-.cb.open{display:block;}
-.tags{display:flex;flex-wrap:wrap;gap:4px;}
-.tag{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--green-bg);color:var(--green);}
-.tag.legacy{background:rgba(90,155,224,.08);color:var(--blue);}
-.tag.live{background:rgba(122,90,138,.1);color:var(--purple);}
-.lv{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600;}
-.lv.y{background:var(--green-bg);color:var(--green);}.lv.n{color:var(--muted);border:1px solid var(--border2);}
-.kv{display:flex;justify-content:space-between;font-size:12px;padding:2px 0;}
-.kv .k{color:var(--muted);}
-.prow{display:flex;align-items:center;gap:8px;padding:4px 0;flex-wrap:wrap;}
-.pn{font-size:12px;font-weight:600;min-width:110px;}
-.empty{font-size:11px;color:var(--dim);font-style:italic;}
-.sess-hist-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dotted var(--border);font-size:12px;}
-.hint{font-size:11px;color:var(--muted);margin-top:2px;}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+
+:root {
+  --bg:       #f4f0e8;
+  --bg2:      #ece8df;
+  --white:    #ffffff;
+  --navy:     #1a2a4a;
+  --navy2:    #243258;
+  --blue:     #2d5fa8;
+  --red:      #7a2020;
+  --red2:     #5c1818;
+  --gold:     #b8913a;
+  --gold2:    #9a7828;
+  --pro-icon: #2d6a44;
+  --con-icon: #8a2828;
+  --text:     #1a1a2e;
+  --text-mid: #3a4060;
+  --text-dim: #7a8090;
+  --border:   rgba(26,42,74,0.12);
+  --border-md:rgba(26,42,74,0.2);
+  --pro-bg:   #e8f0ec;
+  --con-bg:   #f0e8e8;
+  --warn:     #c47a1a;
+  --danger:   #c02020;
+  --green:    #2a7a4a;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Noto Sans TC',sans-serif; min-height:100vh; }
+
+/* ── NAV ── */
+#nav {
+  background:var(--bg); border-bottom:1px solid var(--border-md);
+  display:grid; grid-template-columns:auto 1fr auto;
+  align-items:center; padding:0 32px; height:58px; gap:20px;
+}
+.nav-logo { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.nav-logo img { height:34px; filter: brightness(0) saturate(100%) invert(18%) sepia(50%) saturate(600%) hue-rotate(195deg) brightness(85%); }
+.nav-logo-text { font-size:13px; font-weight:700; color:var(--text); letter-spacing:1px; }
+.nav-rounds { display:flex; align-items:stretch; gap:0; justify-content:center; }
+.nav-round-btn {
+  padding:0 28px; height:58px; background:none; border:none;
+  color:var(--text-dim); font-family:inherit; font-size:12px;
+  letter-spacing:1px; cursor:pointer; transition:all 0.2s;
+  border-bottom:3px solid transparent; border-right:1px solid var(--border);
+  text-align:center; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:3px;
+}
+.nav-round-btn:first-child { border-left:1px solid var(--border); }
+.nav-round-btn:hover { color:var(--navy); background:var(--bg2); }
+.nav-round-btn.active { color:var(--white); background:var(--navy); border-bottom-color:var(--gold); }
+.nav-round-btn .nr-sub { font-size:9px; color:inherit; opacity:0.6; letter-spacing:1px; }
+.nav-round-btn.active .nr-sub { opacity:0.7; }
+.nav-right { display:flex; align-items:center; gap:4px; }
+.nav-tab {
+  padding:8px 18px; background:none; border:none; cursor:pointer;
+  font-family:inherit; font-size:12px; letter-spacing:1px; color:var(--text-dim);
+  border-bottom:2px solid transparent; transition:all 0.2s;
+}
+.nav-tab:hover { color:var(--navy); }
+.nav-tab.active { color:var(--navy); font-weight:700; border-bottom-color:var(--navy); }
+
+/* ── PAGES ── */
+.page { display:none; }
+.page.active { display:block; }
+
+/* ════════ ADMIN ════════ */
+#page-admin { max-width:860px; margin:0 auto; padding:44px 32px; }
+.admin-sec { margin-bottom:40px; }
+.sec-title { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--text-dim); margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border-md); }
+.admin-groups { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+.admin-gc { background:var(--white); border:1px solid var(--border-md); padding:18px; border-radius:6px; }
+.admin-gc h3 { font-size:10px; letter-spacing:2px; color:var(--navy); margin-bottom:10px; text-transform:uppercase; }
+.admin-gc input { display:block; width:100%; background:var(--bg); border:1px solid var(--border-md); color:var(--text); padding:8px 10px; margin-bottom:6px; font-family:inherit; font-size:13px; border-radius:4px; }
+.admin-gc input:focus { outline:none; border-color:var(--blue); }
+.topic-row { display:flex; gap:8px; margin-bottom:8px; align-items:center; }
+.topic-row input { flex:1; background:var(--white); border:1px solid var(--border-md); color:var(--text); padding:9px 12px; font-family:inherit; font-size:13px; border-radius:4px; }
+.topic-row input:focus { outline:none; border-color:var(--blue); }
+.mp-card { background:var(--white); border:1px solid var(--border); padding:12px 18px; border-radius:5px; margin-bottom:8px; font-size:13px; color:var(--text-mid); }
+.btn { padding:9px 20px; border:none; cursor:pointer; font-family:inherit; font-size:11px; letter-spacing:1px; text-transform:uppercase; border-radius:4px; font-weight:700; transition:all 0.2s; }
+.btn-navy { background:var(--navy); color:#fff; }
+.btn-navy:hover { background:var(--navy2); }
+.btn-outline { background:none; border:1.5px solid var(--border-md); color:var(--text-mid); }
+.btn-outline:hover { border-color:var(--navy); color:var(--navy); }
+.btn-sm { padding:6px 12px; font-size:10px; }
+.btn-del { background:none; border:1px solid var(--border); color:var(--text-dim); font-size:10px; padding:6px 11px; border-radius:4px; cursor:pointer; font-family:inherit; }
+.btn-del:hover { border-color:var(--danger); color:var(--danger); }
+.save-bar { display:flex; justify-content:flex-end; padding-top:20px; border-top:1px solid var(--border); }
+
+/* ════════ LIVE ════════ */
+#page-live { padding:20px 32px; max-width:1280px; margin:0 auto; }
+
+/* TOPIC BANNER */
+.topic-banner {
+  background:var(--white); border:1px solid var(--border-md);
+  border-radius:8px; overflow:hidden; margin-bottom:16px;
+}
+.tb-main {
+  display:flex; align-items:center; gap:18px;
+  padding:20px 28px; border-bottom:1px solid var(--border);
+}
+.tb-num {
+  background:var(--navy); color:#fff; padding:8px 18px;
+  border-radius:5px; font-size:12px; letter-spacing:2px;
+  text-transform:uppercase; font-weight:700; flex-shrink:0;
+}
+.tb-divider { width:3px; height:40px; background:var(--border-md); border-radius:2px; flex-shrink:0; }
+.tb-text { font-size:28px; font-weight:900; color:var(--text); line-height:1.3; }
+.tb-text.empty { font-size:16px; color:var(--text-dim); font-weight:400; font-style:italic; }
+.tb-stances { display:grid; grid-template-columns:1fr 1fr; }
+.tb-stance {
+  padding:14px 28px; display:flex; align-items:center; gap:14px;
+  border-right:1px solid var(--border);
+}
+.tb-stance:last-child { border-right:none; }
+.tb-stance-icon {
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; flex-shrink:0;
+}
+.tb-stance.pro .tb-stance-icon { background:var(--pro-bg); }
+.tb-stance.con .tb-stance-icon { background:var(--con-bg); }
+.tb-stance-body { }
+.tb-stance-label { font-size:9px; letter-spacing:3px; text-transform:uppercase; font-weight:700; margin-bottom:3px; }
+.tb-stance.pro .tb-stance-label { color:var(--pro-icon); }
+.tb-stance.con .tb-stance-label { color:var(--con-icon); }
+.tb-stance-text { font-size:14px; color:var(--text-mid); line-height:1.4; }
+
+/* SIDES */
+.sides-row {
+  display:grid; grid-template-columns:1fr 52px 1fr;
+  align-items:start; gap:12px; margin-bottom:16px;
+}
+.side-card {
+  background:var(--white); border:1.5px solid var(--border-md);
+  border-radius:8px; overflow:hidden;
+}
+.side-card.pro-card { border-color:rgba(45,95,168,0.35); }
+.side-card.con-card { border-color:rgba(122,32,32,0.35); }
+.side-card-inner {
+  display:grid; grid-template-columns:200px 1fr;
+  min-height:200px;
+}
+.side-info {
+  padding:20px 22px; border-right:1px solid var(--border);
+}
+.side-tag-row { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.side-icon {
+  width:32px; height:32px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; font-size:14px;
+}
+.pro-card .side-icon { background:var(--pro-bg); }
+.con-card .side-icon { background:var(--con-bg); }
+.side-tag { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+.pro-card .side-tag { color:var(--pro-icon); }
+.con-card .side-tag { color:var(--con-icon); }
+.side-stance { font-size:11px; color:var(--text-dim); line-height:1.5; margin-bottom:12px; font-style:italic; }
+.side-group { font-size:20px; font-weight:900; margin-bottom:10px; color:var(--text); }
+.side-roster { display:flex; flex-direction:column; gap:5px; }
+.side-rr { display:flex; align-items:center; gap:8px; }
+.side-role { font-size:9px; letter-spacing:2px; color:var(--text-dim); min-width:28px; text-transform:uppercase; }
+.side-member { font-size:14px; font-weight:700; color:var(--text); }
+
+.side-points { padding:20px 22px; }
+.side-points-label {
+  font-size:9px; letter-spacing:3px; text-transform:uppercase; font-weight:700;
+  margin-bottom:14px; padding-bottom:8px; border-bottom:2px solid;
+}
+.pro-card .side-points-label { color:var(--pro-icon); border-color:var(--pro-icon); }
+.con-card .side-points-label { color:var(--con-icon); border-color:var(--con-icon); }
+.pt-row { display:flex; gap:10px; align-items:flex-start; margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+.pt-row:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.pt-icon {
+  width:32px; height:32px; border-radius:6px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:14px;
+}
+.pro-card .pt-icon { background:var(--pro-bg); }
+.con-card .pt-icon { background:var(--con-bg); }
+.pt-body { }
+.pt-tag { font-size:12px; font-weight:700; margin-bottom:2px; }
+.pro-card .pt-tag { color:var(--pro-icon); }
+.con-card .pt-tag { color:var(--con-icon); }
+.pt-text { font-size:13px; color:var(--text-mid); line-height:1.5; }
+
+.vs-circle {
+  width:52px; height:52px; border:2px solid var(--border-md); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; letter-spacing:2px; color:var(--text-dim); font-weight:700;
+  align-self:center; margin-top:60px;
+}
+
+/* FLOW TIMELINE */
+.flow-row {
+  display:flex; align-items:center; margin-bottom:16px;
+  background:var(--white); border:1px solid var(--border-md); border-radius:8px; padding:0 16px;
+}
+.flow-label {
+  font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim);
+  white-space:nowrap; padding:16px 14px 16px 0; border-right:1px solid var(--border);
+  margin-right:14px; flex-shrink:0;
+}
+.flow-steps { display:flex; align-items:center; flex:1; padding:12px 0; gap:0; justify-content:space-between; }
+.flow-step {
+  display:flex; flex-direction:column; align-items:center;
+  cursor:pointer; flex-shrink:0; position:relative;
+}
+.flow-step-bubble {
+  width:44px; height:44px; border-radius:50%; border:2px solid var(--border-md);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  background:var(--white); transition:all 0.2s; font-size:8px; color:var(--text-dim);
+  font-weight:700; letter-spacing:0.5px;
+}
+.flow-step.active .flow-step-bubble {
+  background:var(--navy); border-color:var(--navy); color:#fff;
+}
+.flow-step.done .flow-step-bubble {
+  background:var(--green); border-color:var(--green); color:#fff;
+}
+.flow-step-name { font-size:10px; color:var(--text-mid); margin-top:5px; text-align:center; font-weight:600; white-space:nowrap; }
+.flow-step.active .flow-step-name { color:var(--navy); font-weight:700; }
+.flow-step.done .flow-step-name { color:var(--green); }
+.flow-step-time { font-size:9px; color:var(--text-dim); text-align:center; }
+.flow-dash {
+  height:2px; flex:1; border-top:2px dashed var(--border-md);
+  align-self:center; margin-bottom:28px; min-width:12px;
+}
+
+/* TIMER ZONE */
+.timer-zone {
+  background:var(--white); border:1.5px solid var(--border-md);
+  border-radius:8px; overflow:hidden;
+}
+.timer-zone-inner {
+  display:grid; grid-template-columns:240px 1fr auto;
+  align-items:center; min-height:120px;
+}
+.tz-side {
+  padding:22px 24px; border-right:1px solid var(--border);
+  display:flex; align-items:flex-start; gap:12px;
+}
+.tz-side-icon {
+  width:38px; height:38px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:16px;
+}
+.tz-side.pro-tz .tz-side-icon { background:var(--pro-bg); }
+.tz-side.con-tz .tz-side-icon { background:var(--con-bg); }
+.tz-side-body { }
+.tz-side-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; }
+.tz-side.pro-tz .tz-side-label { color:var(--pro-icon); }
+.tz-side.con-tz .tz-side-label { color:var(--con-icon); }
+.tz-side-stance { font-size:12px; color:var(--text-dim); line-height:1.5; }
+.tz-center {
+  padding:20px 28px; text-align:center;
+}
+.tz-speaker-label { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--text-dim); margin-bottom:8px; }
+.tz-speaker { font-size:22px; font-weight:900; color:var(--text); margin-bottom:3px; }
+.tz-step { font-size:12px; color:var(--text-dim); letter-spacing:1px; }
+.tz-bar-wrap { height:3px; background:var(--bg2); border-radius:2px; margin-top:14px; overflow:hidden; }
+.tz-bar { height:100%; background:var(--blue); border-radius:2px; transition:width 0.9s linear, background 0.4s; }
+.tz-bar.warn { background:var(--warn); }
+.tz-bar.danger { background:var(--danger); }
+.tz-time-wrap {
+  padding:22px 32px; border-left:1px solid var(--border);
+  text-align:center; min-width:200px;
+}
+.tz-time {
+  font-size:80px; font-weight:900; line-height:1;
+  font-variant-numeric:tabular-nums; letter-spacing:-2px;
+  color:var(--navy); transition:color 0.4s;
+}
+.tz-time.warn { color:var(--warn); }
+.tz-time.danger { color:var(--danger); animation:blink 0.5s ease-in-out infinite alternate; }
+.tz-time.judge-warn { color:var(--warn); }
+.tz-time.judge-danger { color:var(--danger); }
+@keyframes blink { from{opacity:1} to{opacity:0.45} }
+
+/* CONTROLS */
+.controls-row {
+  display:flex; justify-content:center; gap:12px; margin-top:16px; flex-wrap:wrap;
+}
+.ctrl-btn {
+  padding:13px 32px; border:none; cursor:pointer; font-family:inherit;
+  font-size:13px; font-weight:700; border-radius:6px; transition:all 0.2s;
+  display:flex; align-items:center; gap:8px; letter-spacing:1px;
+}
+.ctrl-start { background:var(--navy); color:#fff; }
+.ctrl-start:hover { background:var(--navy2); }
+.ctrl-pause { background:none; border:1.5px solid var(--warn); color:var(--warn); }
+.ctrl-pause:hover { background:rgba(196,122,26,0.07); }
+.ctrl-reset { background:none; border:1.5px solid var(--border-md); color:var(--text-mid); }
+.ctrl-reset:hover { background:var(--bg2); }
+.ctrl-next { background:var(--gold); color:#fff; }
+.ctrl-next:hover { background:var(--gold2); }
+
+/* FREE DEBATE */
+.fd-zone { display:none; }
+.fd-zone.vis { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px; }
+.fd-card {
+  background:var(--white); border:1.5px solid var(--border-md);
+  border-radius:8px; padding:18px 22px; transition:all 0.25s;
+}
+.fd-card.pro-fd { border-color:rgba(45,95,168,0.3); }
+.fd-card.con-fd { border-color:rgba(122,32,32,0.3); }
+.fd-card.active-fd.pro-fd { background:var(--navy); border-color:var(--navy); }
+.fd-card.active-fd.con-fd { background:var(--red2); border-color:var(--red2); }
+.fd-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.fd-tag { font-size:9px; letter-spacing:3px; text-transform:uppercase; font-weight:700; }
+.fd-card.pro-fd .fd-tag { color:var(--pro-icon); }
+.fd-card.con-fd .fd-tag { color:var(--con-icon); }
+.fd-card.active-fd .fd-tag { color:rgba(255,255,255,0.6); }
+.fd-total { font-size:13px; font-weight:700; font-variant-numeric:tabular-nums; }
+.fd-card.active-fd .fd-total { color:#fff; }
+.fd-total.warn { color:var(--warn); }
+.fd-total.danger { color:var(--danger); }
+.fd-grp { font-size:15px; font-weight:800; margin-bottom:10px; }
+.fd-card.active-fd .fd-grp { color:#fff; }
+.fd-speech-time {
+  font-size:52px; font-weight:900; text-align:center; line-height:1;
+  font-variant-numeric:tabular-nums; transition:color 0.3s;
+}
+.fd-card.active-fd .fd-speech-time { color:#fff; }
+.fd-speech-time.warn { color:var(--warn) !important; }
+.fd-speech-time.danger { color:var(--danger) !important; animation:blink 0.5s ease-in-out infinite alternate; }
+.fd-bar-wrap { height:3px; background:var(--bg2); border-radius:2px; margin-top:8px; overflow:hidden; }
+.fd-card.active-fd .fd-bar-wrap { background:rgba(255,255,255,0.15); }
+.fd-bar { height:100%; background:var(--blue); border-radius:2px; transition:width 0.9s linear; }
+.fd-bar.warn { background:var(--warn); }
+.fd-bar.danger { background:var(--danger); }
+.fd-btns { display:flex; justify-content:center; gap:10px; margin-bottom:14px; }
+.fd-btn {
+  padding:10px 20px; border-radius:5px; cursor:pointer; font-family:inherit;
+  font-size:11px; letter-spacing:1px; text-transform:uppercase; font-weight:700;
+  transition:all 0.2s; border:1.5px solid var(--border-md); background:var(--white); color:var(--text);
+}
+.fd-btn:hover:not(:disabled) { background:var(--bg); }
+.fd-btn.pro-fb { border-color:var(--blue); color:var(--blue); }
+.fd-btn.con-fb { border-color:var(--red); color:var(--red); }
+.fd-btn:disabled { opacity:0.3; cursor:not-allowed; }
+
+/* DRAW PHASE */
+#draw-phase { }
+.draw-actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:16px; }
+.d-btn {
+  padding:12px 24px; border:none; cursor:pointer; font-family:inherit;
+  font-size:12px; font-weight:700; border-radius:6px; transition:all 0.2s; letter-spacing:1px;
+}
+.d-btn:disabled { opacity:0.3; cursor:not-allowed; }
+.d-btn-primary { background:var(--navy); color:#fff; }
+.d-btn-primary:not(:disabled):hover { background:var(--navy2); }
+.d-btn-sec { background:var(--white); border:1.5px solid var(--border-md); color:var(--text); }
+.d-btn-sec:not(:disabled):hover { border-color:var(--navy); color:var(--navy); }
+.d-btn-go { background:var(--gold); color:#fff; }
+.d-btn-go:not(:disabled):hover { background:var(--gold2); }
+.observer-strip {
+  background:var(--white); border:1px solid var(--border); padding:12px 20px;
+  border-radius:6px; text-align:center; margin-bottom:14px;
+  font-size:13px; color:var(--text-mid);
+}
+.obs-label { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--text-dim); margin-bottom:4px; }
+
+/* inline-topics removed */
+.it-card { background:var(--white); border:1px solid var(--border-md); border-radius:8px; overflow:hidden; margin-bottom:16px; }
+.it-header { background:var(--navy); padding:16px 24px; display:flex; align-items:center; gap:16px; }
+.it-num { background:rgba(255,255,255,0.15); color:#fff; padding:5px 14px; border-radius:4px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; flex-shrink:0; }
+.it-title { font-size:20px; font-weight:800; color:#fff; line-height:1.4; }
+.it-stances { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--border); }
+.it-stance { padding:14px 22px; border-right:1px solid var(--border); }
+.it-stance:last-child { border-right:none; }
+.it-stance.pro { background:var(--pro-bg); }
+.it-stance.con { background:var(--con-bg); }
+.it-stance-label { font-size:9px; letter-spacing:3px; text-transform:uppercase; font-weight:700; margin-bottom:4px; }
+.it-stance.pro .it-stance-label { color:var(--pro-icon); }
+.it-stance.con .it-stance-label { color:var(--con-icon); }
+.it-stance-text { font-size:13px; color:var(--text-mid); line-height:1.5; font-style:italic; }
+.it-points-wrap { display:grid; grid-template-columns:1fr 1fr; }
+.it-col { padding:18px 22px; border-right:1px solid var(--border); }
+.it-col:last-child { border-right:none; }
+.it-col-label { font-size:9px; letter-spacing:3px; text-transform:uppercase; font-weight:700; margin-bottom:12px; padding-bottom:7px; border-bottom:2px solid; }
+.it-col.pro .it-col-label { color:var(--pro-icon); border-color:var(--pro-icon); }
+.it-col.con .it-col-label { color:var(--con-icon); border-color:var(--con-icon); }
+.it-pt { display:flex; gap:10px; align-items:flex-start; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+.it-pt:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.it-pt-icon { width:30px; height:30px; border-radius:5px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:13px; }
+.it-col.pro .it-pt-icon { background:var(--pro-bg); }
+.it-col.con .it-pt-icon { background:var(--con-bg); }
+.it-pt-tag { font-size:12px; font-weight:700; margin-bottom:1px; }
+.it-col.pro .it-pt-tag { color:var(--pro-icon); }
+.it-col.con .it-pt-tag { color:var(--con-icon); }
+.it-pt-text { font-size:13px; color:var(--text-mid); line-height:1.5; }
+
+/* MODAL */
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(10,18,40,0.6); z-index:200; align-items:center; justify-content:center; backdrop-filter:blur(3px); }
+.modal-overlay.open { display:flex; }
+.modal-box { background:var(--bg); border:1px solid var(--border-md); border-radius:10px; padding:40px 44px; max-width:460px; width:92%; text-align:center; box-shadow:0 24px 80px rgba(10,18,40,0.2); }
+.m-eye { font-size:9px; letter-spacing:5px; text-transform:uppercase; color:var(--text-dim); margin-bottom:10px; }
+.m-ttl { font-size:22px; font-weight:900; color:var(--text); margin-bottom:4px; }
+.slot-container { margin:20px auto; max-width:300px; }
+.slot-row { display:flex; align-items:center; gap:10px; background:var(--white); border:1px solid var(--border-md); border-radius:5px; padding:10px 14px; margin-bottom:6px; height:48px; overflow:hidden; }
+.slot-role-tag { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--text-dim); min-width:32px; flex-shrink:0; }
+.slot-name-wrap { flex:1; overflow:hidden; position:relative; height:24px; }
+.slot-name { font-size:16px; font-weight:700; color:var(--text); position:absolute; left:0; right:0; }
+.slot-name.spinning { animation:slot-spin 0.07s linear infinite; color:var(--blue); }
+@keyframes slot-spin { 0%{transform:translateY(0);opacity:1} 49%{transform:translateY(-12px);opacity:0} 50%{transform:translateY(12px);opacity:0} 100%{transform:translateY(0);opacity:1} }
+.slot-check { font-size:14px; color:var(--green); opacity:0; transition:opacity 0.3s; }
+.slot-check.vis { opacity:1; }
+.m-note { font-size:12px; color:var(--text-dim); margin:12px 0 24px; line-height:1.7; }
+.m-btns { display:flex; gap:8px; justify-content:center; }
+.conflict-warn { background:#fff8e6; border:1px solid #e8c050; border-radius:5px; padding:10px 14px; font-size:12px; color:#7a5a10; margin-top:8px; text-align:left; line-height:1.5; }
+
+/* Toast */
+#toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%); background:var(--navy); color:#fff; padding:10px 22px; font-size:12px; font-weight:600; border-radius:5px; opacity:0; transition:opacity 0.3s; pointer-events:none; z-index:300; }
+#toast.show { opacity:1; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="masthead">
-    <div class="kicker">G.R.A.C.E. · 會前學員洞察</div>
-    <h1 id="pTitle"></h1>
-    <div class="sub" id="pSub"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    <img id="logo-img" src="" alt="G.R.A.C.E.">
+    <span class="nav-logo-text">辯論場控系統</span>
   </div>
-  <input class="search" id="search" placeholder="搜尋姓名…" oninput="render()">
-  <div class="tabs">
-    <button class="tab active" onclick="setG('all',this)">全部</button>
-    <button class="tab" onclick="setG('green',this)">🟢 高度活躍</button>
-    <button class="tab" onclick="setG('yellow',this)">🟡 中等</button>
-    <button class="tab" onclick="setG('red',this)">🔴 需關注</button>
+  <div class="nav-rounds" id="nav-rounds"></div>
+  <div class="nav-right">
+    <button class="nav-tab active" onclick="switchPage('live')">現場場控</button>
+    <button class="nav-tab" onclick="switchPage('admin')">後台設定</button>
   </div>
-  <div id="list"></div>
+</nav>
+
+<div id="toast"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <div class="m-eye" id="m-eye"></div>
+    <div class="m-ttl" id="m-ttl"></div>
+    <div class="slot-container" id="m-slots"></div>
+    <div class="m-note" id="m-note"></div>
+    <div class="m-btns" id="m-btns"></div>
+  </div>
 </div>
+
+<!-- ADMIN -->
+<div id="page-admin" class="page">
+  <div style="max-width:860px;margin:0 auto;padding:44px 32px;">
+    <div class="admin-sec">
+      <div class="sec-title">分組設定</div>
+      <div class="admin-groups" id="admin-groups"></div>
+    </div>
+    <div class="admin-sec">
+      <div class="sec-title">辯題庫</div>
+      <div id="admin-topics"></div>
+      <div style="margin-top:10px"><button class="btn btn-outline btn-sm" onclick="addTopicRow()">＋ 新增辯題</button></div>
+    </div>
+    <div class="admin-sec">
+      <div class="sec-title">對陣結構</div>
+      <div id="admin-matchup"></div>
+    </div>
+    <div class="save-bar"><button class="btn btn-navy" onclick="saveConfig()">儲存設定</button></div>
+  </div>
+</div>
+
+<!-- LIVE -->
+<div id="page-live" class="page active">
+
+  <!-- DRAW PHASE -->
+  <div id="draw-phase">
+    <!-- Topic banner -->
+    <div class="topic-banner" id="topic-banner">
+      <div class="tb-main">
+        <div class="tb-num" id="tb-num">本場辯題</div>
+        <div class="tb-divider"></div>
+        <div class="tb-text empty" id="tb-text">尚未抽出辯題</div>
+      </div>
+      <div class="tb-stances" id="tb-stances" style="display:none">
+        <div class="tb-stance pro">
+          <div class="tb-stance-icon">🛡</div>
+          <div class="tb-stance-body">
+            <div class="tb-stance-label">正方立場</div>
+            <div class="tb-stance-text" id="tb-pro-stance">—</div>
+          </div>
+        </div>
+        <div class="tb-stance con">
+          <div class="tb-stance-icon">⚔️</div>
+          <div class="tb-stance-body">
+            <div class="tb-stance-label">反方立場</div>
+            <div class="tb-stance-text" id="tb-con-stance">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sides -->
+    <div class="sides-row" id="draw-sides-row">
+      <div class="side-card pro-card" id="draw-pro-card">
+        <div class="side-card-inner">
+          <div class="side-info">
+            <div class="side-tag-row">
+              <div class="side-icon">🛡</div>
+              <span class="side-tag">正方</span>
+            </div>
+            <div class="side-stance" id="draw-pro-stance" style="display:none"></div>
+            <div class="side-group" id="draw-pro-group">—</div>
+            <div class="side-roster" id="draw-pro-roster">
+              <div class="side-rr"><span class="side-role">一辯</span><span class="side-member" style="color:var(--text-dim)">—</span></div>
+              <div class="side-rr"><span class="side-role">二辯</span><span class="side-member" style="color:var(--text-dim)">—</span></div>
+              <div class="side-rr"><span class="side-role">三辯</span><span class="side-member" style="color:var(--text-dim)">—</span></div>
+            </div>
+          </div>
+          <div class="side-points" id="draw-pro-points">
+            <div class="side-points-label">正方論點</div>
+            <div style="color:var(--text-dim);font-size:12px;font-style:italic">抽出辯題後顯示</div>
+          </div>
+        </div>
+      </div>
+      <div class="vs-circle">VS</div>
+      <div class="side-card con-card" id="draw-con-card">
+        <div class="side-card-inner">
+          <div class="side-info">
+            <div class="side-tag-row">
+              <div class="side-icon">⚔️</div>
+              <span class="side-tag">反方</span>
+            </div>
+            <div class="side-stance" id="draw-con-stance" style="display:none"></div>
+            <div class="side-group" id="draw-con-group">—</div>
+            <div class="side-roster" id="draw-con-roster">
+              <div class="side-rr"><span class="side-role">一辯</span><span class="side-member" style="color:var(--text-dim)">—</span></div>
+              <div class="side-rr"><span class="side-role">二辯</span><span class="side-member" style="color:var(--text-dim)">—</span></div>
+              <div class="side-rr"><span class="side-role">三辯</span><span class="side-member" style="color:var(--text-dim)">—</span></div>
+            </div>
+          </div>
+          <div class="side-points" id="draw-con-points">
+            <div class="side-points-label">反方論點</div>
+            <div style="color:var(--text-dim);font-size:12px;font-style:italic">抽出辯題後顯示</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="observer-strip">
+      <div class="obs-label">觀戰組</div>
+      <div id="obs-name">—</div>
+    </div>
+
+    <div class="draw-actions">
+      <button class="d-btn d-btn-primary" id="btn-topic" onclick="drawTopic()">🎲 抽出辯題</button>
+      <button class="d-btn d-btn-sec" id="btn-pro" onclick="drawSide('pro')" disabled>抽正方 + 辯位</button>
+      <button class="d-btn d-btn-sec" id="btn-con" onclick="drawSide('con')" disabled>抽反方 + 辯位</button>
+      <button class="d-btn d-btn-go" id="btn-go" onclick="startDebate()" disabled>開始辯論 →</button>
+    </div>
+
+  </div>
+
+  <!-- DEBATE PHASE -->
+  <div id="debate-phase" style="display:none">
+    <!-- Topic banner (reused) -->
+    <div class="topic-banner" id="debate-topic-banner">
+      <div class="tb-main">
+        <div class="tb-num" id="dtb-num">辯題</div>
+        <div class="tb-divider"></div>
+        <div class="tb-text" id="dtb-text">—</div>
+      </div>
+      <div class="tb-stances">
+        <div class="tb-stance pro">
+          <div class="tb-stance-icon">🛡</div>
+          <div class="tb-stance-body">
+            <div class="tb-stance-label">正方立場</div>
+            <div class="tb-stance-text" id="dtb-pro-stance">—</div>
+          </div>
+        </div>
+        <div class="tb-stance con">
+          <div class="tb-stance-icon">⚔️</div>
+          <div class="tb-stance-body">
+            <div class="tb-stance-label">反方立場</div>
+            <div class="tb-stance-text" id="dtb-con-stance">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sides with points -->
+    <div class="sides-row">
+      <div class="side-card pro-card">
+        <div class="side-card-inner">
+          <div class="side-info" id="debate-pro-info"></div>
+          <div class="side-points" id="debate-pro-points"></div>
+        </div>
+      </div>
+      <div class="vs-circle">VS</div>
+      <div class="side-card con-card">
+        <div class="side-card-inner">
+          <div class="side-info" id="debate-con-info"></div>
+          <div class="side-points" id="debate-con-points"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flow timeline -->
+    <div class="flow-row">
+      <div class="flow-label">發言順序</div>
+      <div class="flow-steps" id="flow-steps"></div>
+    </div>
+
+    <!-- Free debate -->
+    <div class="fd-zone" id="fd-zone">
+      <div class="fd-card pro-fd" id="fd-pro">
+        <div class="fd-top">
+          <span class="fd-tag">正方</span>
+          <span class="fd-total" id="fd-pro-total">2:00</span>
+        </div>
+        <div class="fd-grp" id="fd-pro-grp">—</div>
+        <div class="fd-speech-time" id="fd-pro-speech">0:30</div>
+        <div class="fd-bar-wrap"><div class="fd-bar" id="fd-pro-bar" style="width:100%"></div></div>
+      </div>
+      <div class="fd-card con-fd" id="fd-con">
+        <div class="fd-top">
+          <span class="fd-tag">反方</span>
+          <span class="fd-total" id="fd-con-total">2:00</span>
+        </div>
+        <div class="fd-grp" id="fd-con-grp">—</div>
+        <div class="fd-speech-time" id="fd-con-speech">0:30</div>
+        <div class="fd-bar-wrap"><div class="fd-bar" id="fd-con-bar" style="width:100%"></div></div>
+      </div>
+    </div>
+    <div class="fd-btns" id="fd-btns" style="display:none">
+      <button class="fd-btn pro-fb" id="fd-btn-pro" onclick="fdStart('pro')">▶ 正方發言</button>
+      <button class="fd-btn" onclick="fdStop()">⏸ 暫停</button>
+      <button class="fd-btn con-fb" id="fd-btn-con" onclick="fdStart('con')">▶ 反方發言</button>
+    </div>
+
+    <!-- Timer zone -->
+    <div class="timer-zone" id="timer-zone">
+      <div class="timer-zone-inner">
+        <div class="tz-side pro-tz" id="tz-side">
+          <div class="tz-side-icon" id="tz-icon">🛡</div>
+          <div class="tz-side-body">
+            <div class="tz-side-label" id="tz-side-label">正方發言中</div>
+            <div class="tz-side-stance" id="tz-stance">—</div>
+          </div>
+        </div>
+        <div class="tz-center">
+          <div class="tz-speaker-label">當前發言者</div>
+          <div class="tz-speaker" id="tz-speaker">—</div>
+          <div class="tz-step" id="tz-step">—</div>
+          <div class="tz-bar-wrap"><div class="tz-bar" id="tz-bar" style="width:100%"></div></div>
+        </div>
+        <div class="tz-time-wrap">
+          <div class="tz-time" id="tz-time">2:00</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls-row">
+      <button class="ctrl-btn ctrl-start" id="btn-ts" onclick="timerStart()">▶ 開始</button>
+      <button class="ctrl-btn ctrl-pause" id="btn-tp" onclick="timerPause()" style="display:none">⏸ 暫停</button>
+      <button class="ctrl-btn ctrl-reset" onclick="timerReset()">↺ 重設</button>
+      <button class="ctrl-btn ctrl-next" onclick="timerNext()">→ 下一環節</button>
+    </div>
+    <div style="text-align:center;margin-top:12px">
+      <button class="btn btn-outline btn-sm" onclick="backToDraw()">← 返回抽籤</button>
+    </div>
+  </div>
+</div>
+
 <script>
-window.__PRINCIPAL__={"config":{"platform":"dual","courseName":"《銷售思維建構群》M1","courseDate":"2026-06-12","track":"銷售思維建構群","sessionMeta":[],"SAMPLER_CATS":["資格證類","講座類","諮詢類","工具類","課程類"]},"people":[{"name":"倪婍瑄","email":"i1172511712@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","決策底層邏輯","實戰800","行銷底牌","職場案例集"],"講座類":["從被看見講座"]},"samplerCount":6,"samplerTotal":34253,"academy":{"name":"倪婍瑄","level":"皇家至尊","expire":"2027/08/30","remaining":101142,"total_stored":4760177,"ig":"ora_0530","status":"啟用"},"overview":{"recentPurchase":"2026/06/07 13:49","metrics":{"私享專場":4,"付費直播":35,"正課打底":21,"限時活動":10,"LiveTalk":4,"受訓資格證":10,"聆聽資格證":8,"廣播集數":5,"AI應用":4,"精煉研習班":4},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["《私享專場｜當下實驗室》","工具基地群","脫胎換骨·濾鏡 2.0","銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["7日高能訓練","36計·人心穿透","QA4ever","QA6群","QAFive群","QA直播2群","QA直播3群","QA群","任務紅包群","佈局思維群","價值實戰群","內核進階群","品牌群","實戰問答室","形象銷售群","快問快答2群","快問快答3群","快問快答光芒4射群","快問快答群","戰略𝐂𝐄𝐎群","提升表達群","新春體驗直播","智囊群","決策底層場","目標管理群","直播30","直播100","直播百人群","管理群","職場即時診斷室","職場問答2群","職場問答群","銷售群","領導群","𝟐𝟔𝟖𝟖思維鍛鍊群"],"cls":"legacy"},{"type":"progress","title":"回放複習","progress":[{"label":"脫胎換骨·濾鏡2.0","levels":[3]},{"label":"當下實驗室","levels":[1,2]}]},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",3],["佈局思維",4],["價值實戰",1],["初戀那一年",30],["品牌群",5],["直播100",51],["銷售秘笈",5]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《打開預判超能力》","《系統化思考》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》規則制定之核心鍛鍊","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":["20230722提升表達群：放平心態·偷偷厲害","20230812兩天一夜‧學姊幹什麼","20231022創業遊戲，玩不起就別玩","20240130職話職說研討會","20240321驚豔四座研討會","20240407領導者講堂｜企業研討","20240418行銷佈局，從人性開始","20241013領導者講堂｜企業研討","20250606｜Words of Power｜話語權深讀會","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜ 定時來點學姊時光","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2022年度✦口條訓練營》受訓資格證","《2022年度✦品牌訓練營》受訓資格證","《2022年度✦答辯訓練營》受訓資格證","《2022年度✦領導訓練營》受訓資格證","《2023年度✦口條訓練營》受訓資格證","《2023年度✦品牌訓練營》受訓資格證","《2023年度✦巔峰訓練營》受訓資格證","《2023年度✦開學暖機研討會》受訓資格證","《2024年度✦故事訓練營》受訓資格證","影響力訓練營"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦領導訓練營》1209線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":["《情緒轉力指令包》","《招募演講導航包》","內容輸出設計系統","高級商務指令包"],"cls":""},{"type":"courselist","title":"精煉研習班","items":["《精煉研習班》 QA群✦限定","《精煉研習班》 個人行銷✦領導初階","《精煉研習班》 判斷力✦故事力","《精煉研習班》 思維✦時間"]}]},"history":null},{"name":"黃又庭","email":"ck96208287@hotmail.com","channel":"academy","samplerCats":{"講座類":["從被看見講座"],"課程類":["職場案例集"]},"samplerCount":2,"samplerTotal":6799,"academy":{"name":"黃又庭","level":"皇家至尊","expire":"2028/07/16","remaining":820359,"total_stored":3490949,"ig":"ck.carol__huang","status":"啟用"},"overview":{"recentPurchase":"2026/06/07 13:04","metrics":{"私享專場":4,"付費直播":13,"正課打底":21,"限時活動":6,"LiveTalk":1,"受訓資格證":2,"聆聽資格證":2,"廣播集數":0,"AI應用":1,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["《私享專場｜當下實驗室》","工具基地群","脫胎換骨·濾鏡 2.0","銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["36計·人心穿透","QA4ever","QA6群","QAFive群","任務紅包群","佈局思維群","品牌群","實戰問答室","快問快答2群","智囊群","目標管理群","職場問答2群","職場問答群"],"cls":"legacy"},{"type":"progress","title":"回放複習","progress":[{"label":"脫胎換骨·濾鏡2.0","levels":[3]},{"label":"當下實驗室","levels":[1,2,5,6,9]}]},{"type":"subcats","title":"案例專區","subcats":[["價值實戰",17],["初戀那一年",30],["直播100",44],["銷售秘笈",1]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《打開預判超能力》","《系統化思考》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》規則制定之核心鍛鍊","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":["20231022創業遊戲，玩不起就別玩","20240407領導者講堂｜企業研討","20240418行銷佈局，從人性開始","20241013領導者講堂｜企業研討","20250606｜Words of Power｜話語權深讀會","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2024年度✦故事訓練營》受訓資格證","影響力訓練營"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦品牌演講營》0514現場聆聽席","《2023年度✦領導訓練營》1223線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":["內容輸出設計系統"],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"謝蕎伊","email":"jogo8432@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","行銷底牌","職場案例集"],"工具類":["書籤組"],"講座類":["從被看見講座"]},"samplerCount":5,"samplerTotal":23686,"academy":{"name":"謝蕎伊","level":"皇家至尊","expire":"2027/08/29","remaining":6829,"total_stored":3476553,"ig":"@zoey_.com.tw","status":"啟用"},"overview":{"recentPurchase":"2026/06/12 02:28","metrics":{"私享專場":4,"付費直播":17,"正課打底":19,"限時活動":7,"LiveTalk":3,"受訓資格證":2,"聆聽資格證":9,"廣播集數":0,"AI應用":4,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["《私享專場｜當下實驗室》","工具基地群","脫胎換骨·濾鏡 2.0","銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["36計·人心穿透","QA6群","QAFive群","任務紅包群","佈局思維群","品牌群","實戰問答室","形象銷售群","快問快答2群","快問快答3群","快問快答光芒4射群","戰略𝐂𝐄𝐎群","智囊群","決策底層場","職場即時診斷室","職場問答2群","職場問答群"],"cls":"legacy"},{"type":"progress","title":"回放複習","progress":[{"label":"脫胎換骨·濾鏡2.0","levels":[4]},{"label":"當下實驗室","levels":[1,3]}]},{"type":"subcats","title":"案例專區","subcats":[["佈局思維",4],["價值實戰",17],["初戀那一年",30],["品牌群",3],["直播100",51],["銷售秘笈",21]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》規則制定之核心鍛鍊","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":["20231022創業遊戲，玩不起就別玩","20240321驚豔四座研討會","20240407領導者講堂｜企業研討","20240418行銷佈局，從人性開始","20241013領導者講堂｜企業研討","20250606｜Words of Power｜話語權深讀會","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜ 定時來點學姊時光","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2023年度✦領導訓練營》受訓資格證","影響力訓練營"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦巔峰訓練營》1014線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席","《2025年度✦影響力訓練營》0307線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":["《情緒轉力指令包》","《招募演講導航包》","內容輸出設計系統","高級商務指令包"],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"朱映蓉","email":"jeanie422068@yahoo.com.tw","channel":"academy","samplerCats":{"工具類":["書籤組"],"講座類":["從被看見講座"],"課程類":["行銷底牌","職場案例集"]},"samplerCount":4,"samplerTotal":12636,"academy":{"name":"朱映蓉","level":"皇家至尊","expire":"2027/09/24","remaining":107287,"total_stored":3281540,"ig":"jeanie422068","status":"啟用"},"overview":{"recentPurchase":"2026/06/12 00:18","metrics":{"私享專場":4,"付費直播":26,"正課打底":21,"限時活動":5,"LiveTalk":4,"受訓資格證":7,"聆聽資格證":8,"廣播集數":12,"AI應用":4,"精煉研習班":5},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["《私享專場｜當下實驗室》","工具基地群","脫胎換骨·濾鏡 2.0","銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["36計·人心穿透","QA6群","QAFive群","QA直播2群","QA群","任務紅包群","佈局思維群","價值實戰群","內核進階群","品牌群","實戰問答室","形象銷售群","快問快答2群","快問快答3群","快問快答光芒4射群","戰略𝐂𝐄𝐎群","新春體驗直播","智囊群","決策底層場","目標管理群","管理群","職場即時診斷室","職場問答2群","職場問答群","銷售群","領導群"],"cls":"legacy"},{"type":"progress","title":"回放複習","progress":[{"label":"脫胎換骨·濾鏡2.0","levels":[1,2,3,4]},{"label":"當下實驗室","levels":[1,2,3,4,5,6,7,8]}]},{"type":"subcats","title":"案例專區","subcats":[["佈局思維",1],["價值實戰",2],["初戀那一年",30],["品牌群",2],["直播100",51],["銷售秘笈",5]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《打開預判超能力》","《系統化思考》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》規則制定之核心鍛鍊","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":["20231022創業遊戲，玩不起就別玩","20240407領導者講堂｜企業研討","20241013領導者講堂｜企業研討","20250606｜Words of Power｜話語權深讀會","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜ 定時來點學姊時光","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2021年度✦口條訓練營》受訓資格證","《2022年度✦品牌訓練營》受訓資格證","《2022年度✦領導訓練營》受訓資格證","《2023年度✦品牌訓練營》受訓資格證","《2023年度✦領導訓練營》受訓資格證","《2024年度✦故事訓練營》受訓資格證","影響力訓練營"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2024年度✦領導者講堂》0519線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":["《情緒轉力指令包》","《招募演講導航包》","內容輸出設計系統","高級商務指令包"],"cls":""},{"type":"courselist","title":"精煉研習班","items":["《直播專屬》✦行銷研習班","《精煉研習班》 QA群✦限定","《精煉研習班》 個人行銷✦領導初階","《精煉研習班》 判斷力✦故事力","《精煉研習班》 思維✦時間"]}]},"history":null},{"name":"劉嬿","email":"babe1993.yigolf@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","行銷底牌"],"講座類":["職場影響力講座","從被看見講座"]},"samplerCount":4,"samplerTotal":23888,"academy":{"name":"劉嬿","level":"至尊","expire":"2027/09/25","remaining":189196,"total_stored":3273589,"ig":"_babe.liu62_","status":"啟用"},"overview":{"recentPurchase":"2026/05/20 07:11","metrics":{"私享專場":3,"付費直播":11,"正課打底":21,"限時活動":2,"LiveTalk":1,"受訓資格證":0,"聆聽資格證":3,"廣播集數":0,"AI應用":4,"精煉研習班":4},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["《私享專場｜當下實驗室》","工具基地群","銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["36計·人心穿透","QA6群","QA直播2群","QA直播3群","實戰問答室","形象銷售群","快問快答光芒4射群","新春體驗直播","職場問答2群","領導群","𝟐𝟔𝟖𝟖思維鍛鍊群"],"cls":"legacy"},{"type":"progress","title":"回放複習","progress":[{"label":"當下實驗室","levels":[1,2]}]},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",9],["佈局思維",13],["價值實戰",14],["初戀那一年",10],["品牌群",11],["直播100",17],["銷售秘笈",21]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《打開預判超能力》","《系統化思考》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》規則制定之核心鍛鍊","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":["決策底層場｜線上座談","20231022創業遊戲，玩不起就別玩"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦領導訓練營》0425線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":["《情緒轉力指令包》","《招募演講導航包》","內容輸出設計系統","高級商務指令包"],"cls":""},{"type":"courselist","title":"精煉研習班","items":["《直播專屬》✦行銷研習班","《精煉研習班》 個人行銷✦領導初階","《精煉研習班》 判斷力✦故事力","《精煉研習班》 思維✦時間"]}]},"history":null},{"name":"賴柔諺","email":"rouyan0805@gmail.com","channel":"academy","samplerCats":{"工具類":["社交不再尬"],"講座類":["從被看見講座"],"課程類":["行銷底牌","職場案例集"]},"samplerCount":4,"samplerTotal":17186,"academy":{"name":"賴柔諺","level":"鑽石","expire":"2026/10/08","remaining":29540,"total_stored":2501589,"ig":"laiyanyan_","status":"啟用"},"overview":{"recentPurchase":"2026/05/03 19:46","metrics":{"私享專場":2,"付費直播":18,"正課打底":20,"限時活動":8,"LiveTalk":4,"受訓資格證":2,"聆聽資格證":11,"廣播集數":2,"AI應用":3,"精煉研習班":2},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["《私享專場｜當下實驗室》","銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["7日高能訓練","36計·人心穿透","QA6群","任務紅包群","佈局思維群","價值實戰群","品牌群","實戰問答室","形象銷售群","快問快答2群","快問快答光芒4射群","快問快答群","決策底層場","目標管理群","直播百人群","職場即時診斷室","職場問答2群","領導群"],"cls":"legacy"},{"type":"progress","title":"回放複習","progress":[{"label":"當下實驗室","levels":[1,3,5,6,7,9]}]},{"type":"subcats","title":"案例專區","subcats":[["佈局思維",7],["初戀那一年",8],["直播100",35],["銷售秘笈",20]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《系統化思考》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》規則制定之核心鍛鍊","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":["20231022創業遊戲，玩不起就別玩","20240130職話職說研討會","20240321驚豔四座研討會","20240407領導者講堂｜企業研討","20240418行銷佈局，從人性開始","20241013領導者講堂｜企業研討","20250606｜Words of Power｜話語權深讀會","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜ 定時來點學姊時光","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2023年度✦巔峰訓練營》受訓資格證","影響力訓練營"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦品牌演講營》0514現場聆聽席","《2023年度✦領導訓練營》1223線上聆聽席","《2024年度✦領導者講堂》0519線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席","《2025年度✦影響力訓練營》0307現場聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":["《情緒轉力指令包》","《招募演講導航包》","內容輸出設計系統"],"cls":""},{"type":"courselist","title":"精煉研習班","items":["《直播專屬》✦行銷研習班","《精煉研習班》 個人行銷✦領導初階"]}]},"history":null},{"name":"陳怡君","email":"yc95083@gmail.com","channel":"academy","samplerCats":{},"samplerCount":0,"samplerTotal":0,"academy":{"name":"陳怡君","level":"至尊","expire":"2026/09/18","remaining":66557,"total_stored":2283048,"ig":"yichung0106","status":"啟用"},"overview":{"recentPurchase":"2026/06/09 12:43","metrics":{"私享專場":3,"付費直播":9,"正課打底":19,"限時活動":5,"LiveTalk":4,"受訓資格證":1,"聆聽資格證":10,"廣播集數":3,"AI應用":3,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["《私享專場｜當下實驗室》","工具基地群","銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["7日高能訓練","實戰問答室","快問快答2群","快問快答3群","快問快答光芒4射群","快問快答群","戰略𝐂𝐄𝐎群","智囊群","職場問答群"],"cls":"legacy"},{"type":"progress","title":"回放複習","progress":[{"label":"當下實驗室","levels":[1,2,3,4,5,6,8]}]},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",4],["佈局思維",7],["價值實戰",11],["初戀那一年",18],["品牌群",2],["直播100",8],["銷售秘笈",4]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《系統化思考》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》規則制定之核心鍛鍊"]},{"type":"certs","title":"限時專區 · 活動參與","items":["20231022創業遊戲，玩不起就別玩","20240130職話職說研討會","20240418行銷佈局，從人性開始","20241013領導者講堂｜企業研討","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜ 定時來點學姊時光","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2024年度✦故事訓練營》受訓資格證"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦領導訓練營》1214線上聆聽席","《2024年度✦領導者講堂》0519線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席","《2025年度✦影響力訓練營》0307線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":["《情緒轉力指令包》","內容輸出設計系統","高級商務指令包"],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"李念宇","email":"psnw0925@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","實戰800","行銷底牌","職場案例集"],"工具類":["系統重組"],"講座類":["從被看見講座"]},"samplerCount":6,"samplerTotal":43575,"academy":{"name":"李念宇","level":"皇家至尊","expire":"2027/07/22","remaining":18675,"total_stored":2263228,"ig":"debby.happy","status":"啟用"},"overview":{"recentPurchase":"2026/06/09 10:32","metrics":{"私享專場":3,"付費直播":5,"正課打底":20,"限時活動":2,"LiveTalk":2,"受訓資格證":1,"聆聽資格證":1,"廣播集數":0,"AI應用":2,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["《私享專場｜當下實驗室》","工具基地群","銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["36計·人心穿透","QA6群","快問快答光芒4射群","決策底層場","職場即時診斷室"],"cls":"legacy"},{"type":"progress","title":"回放複習","progress":[{"label":"當下實驗室","levels":[1,2,3,6,7,8]}]},{"type":"subcats","title":"案例專區","subcats":[["佈局思維",13],["價值實戰",16],["初戀那一年",2],["品牌群",11],["直播100",5],["銷售秘笈",21]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《系統化思考》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》規則制定之核心鍛鍊","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":["20250606｜Words of Power｜話語權深讀會","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["影響力訓練營"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2025年度✦影響力訓練營》0307現場聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":["《招募演講導航包》","內容輸出設計系統"],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"賴家榛","email":"laichiachen1999@gmail.com","channel":"academy","samplerCats":{"諮詢類":["QA諮詢"]},"samplerCount":1,"samplerTotal":5000,"academy":{"name":"賴家榛","level":"鑽石","expire":"2026/09/07","remaining":13332,"total_stored":2217027,"ig":"lai880708","status":"啟用"},"overview":{"recentPurchase":"2026/06/09 23:38","metrics":{"私享專場":1,"付費直播":17,"正課打底":14,"限時活動":8,"LiveTalk":3,"受訓資格證":2,"聆聽資格證":12,"廣播集數":10,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["QA直播3群","任務紅包群","佈局思維群","內核進階群","品牌群","實戰問答室","快問快答2群","快問快答3群","快問快答光芒4射群","戰略𝐂𝐄𝐎群","新春體驗直播","智囊群","目標管理群","管理群","職場問答2群","職場問答群","領導群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",10],["佈局思維",7],["價值實戰",7],["初戀那一年",19],["品牌群",2],["直播100",14],["銷售秘笈",21]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《輸出寶典｜主題大全》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班"]},{"type":"certs","title":"限時專區 · 活動參與","items":["決策底層場｜線上座談","20231022創業遊戲，玩不起就別玩","20240321驚豔四座研討會","20240407領導者講堂｜企業研討","20240418行銷佈局，從人性開始","20241013領導者講堂｜企業研討","20250606｜Words of Power｜話語權深讀會","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2024年度✦領導訓練營》受訓資格證","影響力訓練營"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦品牌演講營》0514現場聆聽席","《2023年度✦巔峰訓練營》1014線上聆聽席","《2023年度✦領導訓練營》1223線上聆聽席","《2024年度✦領導者講堂》0519線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席","《2025年度✦影響力訓練營》0307現場聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"曾凡媛","email":"eva01055@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","職場案例集"],"工具類":["書籤組"],"講座類":["從被看見講座"]},"samplerCount":4,"samplerTotal":18798,"academy":{"name":"曾凡媛","level":"鑽石","expire":"2027/07/01","remaining":41747,"total_stored":1987584,"ig":"tseng_yuan","status":"啟用"},"overview":{"recentPurchase":"2026/05/04 23:13","metrics":{"私享專場":2,"付費直播":17,"正課打底":18,"限時活動":6,"LiveTalk":4,"受訓資格證":1,"聆聽資格證":11,"廣播集數":9,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["工具基地群","銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["7日高能訓練","QA4ever","QA6群","QA直播3群","任務紅包群","價值實戰群","品牌群","實戰問答室","形象銷售群","快問快答2群","快問快答3群","快問快答光芒4射群","快問快答群","智囊群","目標管理群","職場問答2群","職場問答群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["價值實戰",1],["初戀那一年",23],["直播100",7],["銷售秘笈",3]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》規則制定之核心鍛鍊"]},{"type":"certs","title":"限時專區 · 活動參與","items":["決策底層場｜線上座談","20240130職話職說研討會","20240407領導者講堂｜企業研討","20240418行銷佈局，從人性開始","20241013領導者講堂｜企業研討","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜ 定時來點學姊時光","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2024年度✦故事訓練營》受訓資格證"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦品牌演講營》0514現場聆聽席","《2023年度✦領導訓練營》1223線上聆聽席","《2024年度✦領導者講堂》0519線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席","《2025年度✦影響力訓練營》0307線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"鄭宜家","email":"5uru80627@gmail.com","channel":"academy","samplerCats":{"工具類":["書籤組"],"講座類":["職場影響力講座","從被看見講座"],"課程類":["職場案例集"]},"samplerCount":4,"samplerTotal":16298,"academy":{"name":"鄭宜家","level":"至尊","expire":"2026/06/23","remaining":19270,"total_stored":1918815,"ig":"mabels_diary","status":"啟用"},"overview":{"recentPurchase":"2026/06/09 12:52","metrics":{"私享專場":2,"付費直播":6,"正課打底":13,"限時活動":0,"LiveTalk":3,"受訓資格證":0,"聆聽資格證":1,"廣播集數":2,"AI應用":1,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["工具基地群","銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["36計·人心穿透","任務紅包群","實戰問答室","快問快答3群","智囊群","決策底層場"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",1],["價值實戰",7],["初戀那一年",30],["品牌群",4],["直播100",36],["銷售秘笈",6]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》 開箱✦引導力","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《系統化思考》","《進階指南✦思維階梯》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":[],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜ 定時來點學姊時光","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦領導訓練營》1223線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":["內容輸出設計系統"],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"陳諭萱","email":"s418vs1112qoo@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","決策底層邏輯","行銷底牌","職場案例集"],"工具類":["社交不再尬"],"講座類":["從被看見講座"]},"samplerCount":6,"samplerTotal":32676,"academy":{"name":"陳諭萱","level":"打底層","expire":"","remaining":16889,"total_stored":1598437,"ig":"tag_ruby","status":"啟用"},"overview":{"recentPurchase":"2026/05/08 21:14","metrics":{"私享專場":1,"付費直播":12,"正課打底":12,"限時活動":3,"LiveTalk":3,"受訓資格證":2,"聆聽資格證":11,"廣播集數":2,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["7日高能訓練","QA4ever","QA直播3群","佈局思維群","價值實戰群","內核進階群","實戰問答室","快問快答群","戰略𝐂𝐄𝐎群","管理群","職場問答2群","領導群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["初戀那一年",21],["品牌群",2],["直播100",13],["銷售秘笈",7]]},{"type":"courselist","title":"正課區 · 打底","items":["《輸出寶典｜主題大全》","《溝通與表達》 開箱✦引導力","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》規則制定之核心鍛鍊","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":["20231022創業遊戲，玩不起就別玩","20240130職話職說研討會","20241013領導者講堂｜企業研討"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜ 定時來點學姊時光","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2023年度✦巔峰訓練營》受訓資格證","《2023年度✦領導訓練營》受訓資格證"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦品牌演講營》0514現場聆聽席","《2023年度✦巔峰訓練營》1014線上聆聽席","《2024年度✦領導者講堂》0519線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席","《2025年度✦影響力訓練營》0307線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"吳子言","email":"pear0917@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","行銷底牌","職場案例集"],"工具類":["書籤組"],"講座類":["從被看見講座"]},"samplerCount":5,"samplerTotal":22686,"academy":{"name":"吳子言","level":"打底層","expire":"","remaining":18299,"total_stored":1576983,"ig":"alinacccc","status":"啟用"},"overview":{"recentPurchase":"2026/05/02 20:00","metrics":{"私享專場":1,"付費直播":13,"正課打底":17,"限時活動":7,"LiveTalk":3,"受訓資格證":1,"聆聽資格證":4,"廣播集數":1,"AI應用":0,"精煉研習班":2},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["36計·人心穿透","QA6群","QA直播2群","QA群","實戰問答室","快問快答2群","戰略𝐂𝐄𝐎群","提升表達群","新春體驗直播","直播百人群","職場問答2群","銷售群","𝟐𝟔𝟖𝟖思維鍛鍊群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["價值實戰",5],["初戀那一年",4],["直播100",13],["銷售秘笈",2]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》規則制定之核心鍛鍊","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":["決策底層場｜線上座談","20230722提升表達群：放平心態·偷偷厲害","20231022創業遊戲，玩不起就別玩","20240321驚豔四座研討會","20240407領導者講堂｜企業研討","20240418行銷佈局，從人性開始","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2023年度✦品牌訓練營》受訓資格證"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦口條訓練營》0319現場聆聽席","《2023年度✦品牌演講營》0514現場聆聽席","《2023年度✦領導訓練營》1223線上聆聽席","《2025年度✦影響力訓練營》0307活動先鋒"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":["《精煉研習班》 QA群✦限定","《精煉研習班》 判斷力✦故事力"]}]},"history":null},{"name":"蕭惠君","email":"babylove94520@hotmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","決策底層邏輯","實戰800","行銷底牌","職場案例集"],"工具類":["系統重組","社交不再尬","書籤組"],"講座類":["職場影響力講座","從被看見講座"]},"samplerCount":10,"samplerTotal":62675,"academy":{"name":"蕭惠君","level":"打底層","expire":"","remaining":46483,"total_stored":1543436,"ig":"hsiao.cc","status":"啟用"},"overview":{"recentPurchase":"2026/06/11 22:04","metrics":{"私享專場":1,"付費直播":10,"正課打底":19,"限時活動":2,"LiveTalk":4,"受訓資格證":0,"聆聽資格證":8,"廣播集數":1,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["7日高能訓練","QA4ever","任務紅包群","價值實戰群","內核進階群","實戰問答室","形象銷售群","快問快答群","管理群","領導群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",3],["佈局思維",4],["初戀那一年",29],["品牌群",3],["直播100",20],["銷售秘笈",10]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》規則制定之核心鍛鍊","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":["決策底層場｜線上座談","20241013領導者講堂｜企業研討"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜ 定時來點學姊時光","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2024年度✦領導者講堂》0519線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"賴柏慈","email":"forya0007@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","決策底層邏輯","行銷底牌","職場案例集"],"工具類":["系統重組","社交不再尬","書籤組"],"諮詢類":["QA諮詢"],"講座類":["從被看見講座"]},"samplerCount":9,"samplerTotal":60675,"academy":{"name":"賴柏慈","level":"打底層","expire":"","remaining":39771,"total_stored":1537067,"ig":"smile_ing10","status":"啟用"},"overview":{"recentPurchase":"2026/05/06 20:15","metrics":{"私享專場":1,"付費直播":9,"正課打底":18,"限時活動":5,"LiveTalk":3,"受訓資格證":0,"聆聽資格證":9,"廣播集數":6,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["QAFive群","QA群","任務紅包群","內核進階群","快問快答3群","智囊群","目標管理群","管理群","領導群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",12],["價值實戰",6],["初戀那一年",14],["直播100",16],["銷售秘笈",10]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》規則制定之核心鍛鍊","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":["決策底層場｜線上座談","20231022創業遊戲，玩不起就別玩","20240321驚豔四座研討會","20241013領導者講堂｜企業研討","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦口條訓練營》0319現場聆聽席","《2024年度✦領導者講堂》0519線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"郭馨予","email":"vera831824@gmail.com","channel":"academy","samplerCats":{"課程類":["實戰800","職場案例集","行銷底牌"]},"samplerCount":3,"samplerTotal":25664,"academy":{"name":"郭馨予","level":"鑽石","expire":"2027/07/01","remaining":62468,"total_stored":1523020,"ig":"shinyu.1824","status":"啟用"},"overview":{"recentPurchase":"2026/05/09 23:54","metrics":{"私享專場":2,"付費直播":7,"正課打底":7,"限時活動":3,"LiveTalk":2,"受訓資格證":0,"聆聽資格證":2,"廣播集數":5,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["工具基地群","銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["QA6群","QAFive群","快問快答光芒4射群","智囊群","決策底層場","目標管理群","職場即時診斷室"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",4],["價值實戰",1],["初戀那一年",11],["品牌群",3],["直播100",7],["銷售秘笈",12]]},{"type":"courselist","title":"正課區 · 打底","items":["《溝通與表達》  團隊協作力","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《領導與管理》初階班"]},{"type":"certs","title":"限時專區 · 活動參與","items":["20240321驚豔四座研討會","20240407領導者講堂｜企業研討","20250606｜話語權深讀會｜參與者"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜ 定時來點學姊時光","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦品牌演講營》0514現場聆聽席","《2023年度✦巔峰訓練營》1014線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"藍筱雯","email":"kiki_8310@yahoo.com.tw","channel":"academy","samplerCats":{"課程類":["形象五部曲","實戰800","職場案例集"],"工具類":["社交不再尬"],"講座類":["職場影響力講座","從被看見講座"]},"samplerCount":6,"samplerTotal":35486,"academy":{"name":"藍筱雯","level":"鑽石","expire":"2027/07/01","remaining":89827,"total_stored":1407744,"ig":"kiki_8310","status":"啟用"},"overview":{"recentPurchase":"2026/06/10 12:48","metrics":{"私享專場":1,"付費直播":3,"正課打底":19,"限時活動":3,"LiveTalk":1,"受訓資格證":0,"聆聽資格證":8,"廣播集數":34,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["7日高能訓練","任務紅包群","快問快答群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",5],["佈局思維",13],["價值實戰",17],["初戀那一年",30],["品牌群",11],["直播100",9],["銷售秘笈",21]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》規則制定之核心鍛鍊","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":["決策底層場｜線上座談","20231022創業遊戲，玩不起就別玩","20240407領導者講堂｜企業研討"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦領導訓練營》1223線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"賴又嘉","email":"hming803@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","行銷底牌","職場案例集"],"工具類":["書籤組"]},"samplerCount":4,"samplerTotal":19664,"academy":{"name":"賴又嘉","level":"至尊","expire":"2026/08/19","remaining":44126,"total_stored":1246999,"ig":"yoga.lai31","status":"啟用"},"overview":{"recentPurchase":"2026/06/11 23:45","metrics":{"私享專場":3,"付費直播":0,"正課打底":17,"限時活動":2,"LiveTalk":1,"受訓資格證":1,"聆聽資格證":0,"廣播集數":0,"AI應用":1,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["《私享專場｜當下實驗室》","脫胎換骨·濾鏡 2.0","銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":[],"cls":"legacy"},{"type":"progress","title":"回放複習","progress":[{"label":"脫胎換骨·濾鏡2.0","levels":[4]},{"label":"當下實驗室","levels":[1,3,5,6,7,9]}]},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",5],["佈局思維",13],["價值實戰",5],["初戀那一年",11],["直播100",5],["銷售秘笈",1]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》  團隊協作力","《溝通與表達》 開箱✦引導力","《行銷佈局，從人性開始》","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《系統化思考》","《進階指南✦思維階梯》","《人性行銷｜佈局力》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》執行力推動","《領導與管理》規則制定之核心鍛鍊"]},{"type":"certs","title":"限時專區 · 活動參與","items":["決策底層場｜線上座談","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["影響力訓練營"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":[],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":["高級商務指令包"],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"謝明瀠","email":"mying802@gmail.com","channel":"academy","samplerCats":{"課程類":["決策底層邏輯","行銷底牌","職場案例集"],"工具類":["書籤組"],"講座類":["職場影響力講座","從被看見講座"]},"samplerCount":6,"samplerTotal":24776,"academy":{"name":"謝明瀠","level":"打底層","expire":"","remaining":40125,"total_stored":1100916,"ig":"802_ming","status":"啟用"},"overview":{"recentPurchase":"2026/05/26 23:09","metrics":{"私享專場":1,"付費直播":10,"正課打底":5,"限時活動":2,"LiveTalk":3,"受訓資格證":0,"聆聽資格證":4,"廣播集數":1,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["7日高能訓練","QA4ever","任務紅包群","內核進階群","實戰問答室","快問快答3群","快問快答群","智囊群","管理群","領導群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",3],["佈局思維",8],["價值實戰",1],["初戀那一年",19],["直播100",2],["銷售秘笈",1]]},{"type":"courselist","title":"正課區 · 打底","items":["《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班"]},{"type":"certs","title":"限時專區 · 活動參與","items":["20240418行銷佈局，從人性開始","20241013領導者講堂｜企業研討"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜ 定時來點學姊時光","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦品牌演講營》0514現場聆聽席","《2023年度✦巔峰訓練營》1014線上聆聽席","《2023年度✦領導訓練營》1223線上聆聽席","《2025年度✦影響力訓練營》0307活動先鋒"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"許喬淅","email":"angela556672@gmail.com","channel":"academy","samplerCats":{"工具類":["書籤組"],"講座類":["職場影響力講座","從被看見講座"],"課程類":["職場案例集"]},"samplerCount":4,"samplerTotal":14616,"academy":{"name":"許喬淅","level":"打底層","expire":"","remaining":19198,"total_stored":1012998,"ig":"3.h2oac","status":"啟用"},"overview":{"recentPurchase":"2026/05/02 21:20","metrics":{"私享專場":1,"付費直播":8,"正課打底":12,"限時活動":4,"LiveTalk":1,"受訓資格證":3,"聆聽資格證":12,"廣播集數":0,"AI應用":0,"精煉研習班":1},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["7日高能訓練","QA直播2群","內核進階群","快問快答群","提升表達群","管理群","銷售群","領導群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["價值實戰",2],["初戀那一年",7],["品牌群",1],["直播100",4],["銷售秘笈",6]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《高端特務✦銷售力》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《進階指南✦思維階梯》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班"]},{"type":"certs","title":"限時專區 · 活動參與","items":["20230722提升表達群：放平心態·偷偷厲害","20231022創業遊戲，玩不起就別玩","20240321驚豔四座研討會","20241013領導者講堂｜企業研討"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2023年度✦口條訓練營》受訓資格證","《2023年度✦品牌訓練營》受訓資格證","《2023年度✦領導訓練營》受訓資格證"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦口條訓練營》0319現場聆聽席","《2023年度✦品牌演講營》0514現場聆聽席","《2023年度✦巔峰訓練營》1014線上聆聽席","《2023年度✦領導訓練營》1214線上聆聽席","《2024年度✦領導者講堂》0519線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":["《直播專屬》✦行銷研習班"]}]},"history":null},{"name":"陳妙宜","email":"joannac134451@gmail.com","channel":"academy","samplerCats":{"工具類":["系統重組","社交不再尬","書籤組"],"諮詢類":["QA諮詢"],"講座類":["職場影響力講座","從被看見講座"],"課程類":["行銷底牌","職場案例集"]},"samplerCount":8,"samplerTotal":51373,"academy":{"name":"陳妙宜","level":"打底層","expire":"","remaining":56450,"total_stored":991781,"ig":"hana_miach","status":"啟用"},"overview":{"recentPurchase":"2026/06/10 10:13","metrics":{"私享專場":1,"付費直播":4,"正課打底":7,"限時活動":2,"LiveTalk":1,"受訓資格證":1,"聆聽資格證":2,"廣播集數":3,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["36計·人心穿透","實戰問答室","形象銷售群","職場問答2群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["價值實戰",3],["初戀那一年",11],["直播100",10],["銷售秘笈",2]]},{"type":"courselist","title":"正課區 · 打底","items":["《溝通與表達》 開箱✦引導力","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班","《領導與管理》驅動凝聚力"]},{"type":"certs","title":"限時專區 · 活動參與","items":["決策底層場｜線上座談","20241013領導者講堂｜企業研討"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["影響力訓練營"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"許孟暉","email":"nbkme1228@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","決策底層邏輯","行銷底牌","職場案例集"],"工具類":["系統重組","社交不再尬"],"講座類":["從被看見講座"]},"samplerCount":7,"samplerTotal":51176,"academy":{"name":"許孟暉","level":"打底層","expire":"","remaining":25875,"total_stored":869276,"ig":"ugly_hui_hui","status":"啟用"},"overview":{"recentPurchase":"2026/05/06 23:26","metrics":{"私享專場":1,"付費直播":4,"正課打底":7,"限時活動":0,"LiveTalk":1,"受訓資格證":0,"聆聽資格證":1,"廣播集數":13,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["36計·人心穿透","任務紅包群","目標管理群","職場問答2群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["佈局思維",4],["價值實戰",3],["初戀那一年",8],["品牌群",1],["直播100",4]]},{"type":"courselist","title":"正課區 · 打底","items":["《溝通與表達》 開箱✦引導力","《溝通與表達》高效會議管理","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班"]},{"type":"certs","title":"限時專區 · 活動參與","items":[],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2025年度✦影響力訓練營》0307線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"郭茗蕥","email":"y56780@yahoo.com.tw","channel":"academy","samplerCats":{"工具類":["系統重組"],"講座類":["從被看見講座"],"課程類":["職場案例集"]},"samplerCount":3,"samplerTotal":26067,"academy":{"name":"郭茗蕥","level":"打底層","expire":"","remaining":106699,"total_stored":804551,"ig":"miyakuo_0107","status":"啟用"},"overview":{"recentPurchase":"2026/05/05 22:19","metrics":{"私享專場":1,"付費直播":6,"正課打底":4,"限時活動":2,"LiveTalk":1,"受訓資格證":1,"聆聽資格證":8,"廣播集數":1,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["任務紅包群","品牌群","實戰問答室","快問快答光芒4射群","智囊群","目標管理群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["價值實戰",2],["初戀那一年",4],["品牌群",1],["直播100",2],["銷售秘笈",4]]},{"type":"courselist","title":"正課區 · 打底","items":["《人性透視》—判斷力養成","《初始根基｜思維調整》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班"]},{"type":"certs","title":"限時專區 · 活動參與","items":["20240418行銷佈局，從人性開始","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2024年度✦故事訓練營》受訓資格證"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2024年度✦領導者講堂》0519線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"林宛慈","email":"coolbabywulala@gmail.com","channel":"academy","samplerCats":{"課程類":["職場案例集"]},"samplerCount":1,"samplerTotal":3999,"academy":{"name":"林宛慈","level":"打底層","expire":"","remaining":11794,"total_stored":800326,"ig":"Babywulala","status":"啟用"},"overview":{"recentPurchase":"2026/05/02 20:59","metrics":{"私享專場":1,"付費直播":5,"正課打底":4,"限時活動":3,"LiveTalk":2,"受訓資格證":1,"聆聽資格證":3,"廣播集數":0,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["36計·人心穿透","QA4ever","內核進階群","管理群","領導群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["初戀那一年",3],["直播100",15],["銷售秘笈",3]]},{"type":"courselist","title":"正課區 · 打底","items":["《人性透視》—判斷力養成","《初始根基｜思維調整》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班"]},{"type":"certs","title":"限時專區 · 活動參與","items":["決策底層場｜線上座談","20231022創業遊戲，玩不起就別玩","20241013領導者講堂｜企業研討"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2023年度✦巔峰訓練營》受訓資格證"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦巔峰訓練營》1014線上聆聽席","《2023年度✦領導訓練營》1223線上聆聽席","《2025年度✦影響力訓練營》0307現場聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"黃詩庭","email":"eddith1011@gmail.com","channel":"academy","samplerCats":{},"samplerCount":0,"samplerTotal":0,"academy":{"name":"黃詩庭","level":"打底層","expire":"","remaining":22185,"total_stored":795353,"ig":"leonana_huang","status":"啟用"},"overview":{"recentPurchase":"2026/05/09 14:56","metrics":{"私享專場":1,"付費直播":6,"正課打底":3,"限時活動":2,"LiveTalk":4,"受訓資格證":0,"聆聽資格證":3,"廣播集數":1,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["任務紅包群","快問快答2群","快問快答3群","智囊群","職場問答2群","職場問答群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["初戀那一年",13],["品牌群",3],["直播100",8],["銷售秘笈",2]]},{"type":"courselist","title":"正課區 · 打底","items":["《人性透視》—判斷力養成","《初始根基｜思維調整》","《領導與管理》初階班"]},{"type":"certs","title":"限時專區 · 活動參與","items":["20231022創業遊戲，玩不起就別玩","20251118 職場影響力：戰略計劃"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜ 定時來點學姊時光","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜十分有力","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦巔峰訓練營》1014線上聆聽席","《2023年度✦領導訓練營》1223線上聆聽席","《2025年度✦影響力訓練營》0307現場聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"林慶芳","email":"cy8205263@yahoo.com.tw","channel":"academy","samplerCats":{"諮詢類":["QA諮詢"],"工具類":["系統重組","社交不再尬","全域指令"],"課程類":["決策底層邏輯","職場案例集","行銷底牌"],"講座類":["職場影響力講座","從被看見講座"]},"samplerCount":9,"samplerTotal":84574,"academy":{"name":"林慶芳","level":"至尊","expire":"2026/08/17","remaining":95646,"total_stored":753999,"ig":"eyebrow_lash_scheming","status":"啟用"},"overview":{"recentPurchase":"2026/06/09 00:44","metrics":{"私享專場":1,"付費直播":0,"正課打底":10,"限時活動":0,"LiveTalk":1,"受訓資格證":0,"聆聽資格證":0,"廣播集數":2,"AI應用":1,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":[],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",1],["佈局思維",3],["價值實戰",5],["初戀那一年",2],["品牌群",3],["直播100",3],["銷售秘笈",5]]},{"type":"courselist","title":"正課區 · 打底","items":["《解鎖經營特質》","《課件操手｜搞定問題》","《輸出寶典｜主題大全》","《開通連結｜掌握思考要領》","《溝通與表達》 開箱✦引導力","《人性透視》—判斷力養成","《初始根基｜思維調整》","《系統化思考》","《鍛鍊領導特質》口條/課件生產力","《領導與管理》初階班"]},{"type":"certs","title":"限時專區 · 活動參與","items":[],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":[],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":["內容輸出設計系統"],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"王佩婷","email":"peiting315@gmail.com","channel":"academy","samplerCats":{"講座類":["職場影響力講座"],"課程類":["行銷底牌","職場案例集"]},"samplerCount":3,"samplerTotal":12599,"academy":{"name":"王佩婷","level":"打底層","expire":"","remaining":31816,"total_stored":703428,"ig":"@ting.315_","status":"啟用"},"overview":{"recentPurchase":"2026/05/09 22:38","metrics":{"私享專場":1,"付費直播":5,"正課打底":5,"限時活動":4,"LiveTalk":3,"受訓資格證":2,"聆聽資格證":12,"廣播集數":1,"AI應用":0,"精煉研習班":2},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":["QA群","內核進階群","新春體驗直播","銷售群","𝟐𝟔𝟖𝟖思維鍛鍊群"],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["初戀那一年",6],["直播100",2]]},{"type":"courselist","title":"正課區 · 打底","items":["《輸出寶典｜主題大全》","《人性弱點攻略》","《人性透視》—判斷力養成","《初始根基｜思維調整》","《進階指南✦思維階梯》"]},{"type":"certs","title":"限時專區 · 活動參與","items":["決策底層場｜線上座談","20231022創業遊戲，玩不起就別玩","20240407領導者講堂｜企業研討","20241013領導者講堂｜企業研討"],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":["QA連線群","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜ 定時來點學姊時光","𝐋𝐈𝐕𝐄 𝐓𝐀𝐋𝐊｜閃聊加油站"],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":["《2023年度✦30日秘密計劃》受訓資格證","《2023年度✦口條訓練營》受訓資格證"],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":["《2023年度✦口條訓練營》0319現場聆聽席","《2023年度✦巔峰訓練營》1014線上聆聽席","《2023年度✦領導訓練營》0425線上聆聽席","《2024年度✦領導者講堂》0519線上聆聽席","《2024年度✦領導者講堂》0526線上聆聽席","《2024年度✦領導者講堂》0616線上聆聽席","《2024年度✦領導者講堂》0623線上聆聽席","《2024年度✦領導者講堂》0707線上聆聽席","《2024年度✦領導者講堂》0728線上聆聽席","《2024年度✦領導者講堂》0825線上聆聽席","《2024年度✦領導者講堂》0922線上聆聽席","《2025年度✦影響力訓練營》0307現場聆聽席"],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":["《精煉研習班》 QA群✦限定","《精煉研習班》 思維✦時間"]}]},"history":null},{"name":"王韻蟬","email":"yunchanw@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","決策底層邏輯"],"工具類":["系統重組","書籤組"]},"samplerCount":4,"samplerTotal":30677,"academy":{"name":"王韻蟬","level":"鑽石","expire":"2027/08/28","remaining":277925,"total_stored":528000,"ig":"eteukiml","status":"啟用"},"overview":{"recentPurchase":"2026/06/09 11:50","metrics":{"私享專場":1,"付費直播":0,"正課打底":0,"限時活動":0,"LiveTalk":0,"受訓資格證":0,"聆聽資格證":0,"廣播集數":0,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":[],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",5],["佈局思維",10],["初戀那一年",1],["銷售秘笈",13]]},{"type":"courselist","title":"正課區 · 打底","items":[]},{"type":"certs","title":"限時專區 · 活動參與","items":[],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":[],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":[],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"田慧琳","email":"tienhuilin9@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲"]},"samplerCount":1,"samplerTotal":8000,"academy":{"name":"田慧琳","level":"鑽石","expire":"2027/08/25","remaining":105746,"total_stored":400000,"ig":"tienhuilin9","status":"啟用"},"overview":{"recentPurchase":"2026/06/11 22:48","metrics":{"私享專場":2,"付費直播":0,"正課打底":0,"限時活動":0,"LiveTalk":0,"受訓資格證":0,"聆聽資格證":0,"廣播集數":0,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["脫胎換骨·濾鏡 2.0","銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":[],"cls":"legacy"},{"type":"progress","title":"回放複習","progress":[{"label":"脫胎換骨·濾鏡2.0","levels":[4]}]},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",12],["佈局思維",2],["直播100",12]]},{"type":"courselist","title":"正課區 · 打底","items":[]},{"type":"certs","title":"限時專區 · 活動參與","items":[],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":[],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":[],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"黃已晅","email":"amy3557652@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","實戰800","職場案例集"],"講座類":["決策底層座談","從被看見講座"],"資格證類":["QA群"],"工具類":["書籤組"]},"samplerCount":7,"samplerTotal":40599,"academy":{"name":"黃已晅","level":"打底層","expire":"2027/02/26","remaining":86759,"total_stored":262567,"ig":"a25252664","status":"啟用"},"overview":{"recentPurchase":"2026/06/04 12:14","metrics":{"私享專場":1,"付費直播":0,"正課打底":0,"限時活動":0,"LiveTalk":0,"受訓資格證":0,"聆聽資格證":0,"廣播集數":0,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":[],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["價值實戰",8],["直播100",11]]},{"type":"courselist","title":"正課區 · 打底","items":[]},{"type":"certs","title":"限時專區 · 活動參與","items":[],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":[],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":[],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"莊永濬","email":"a36278362@gmail.com","channel":"academy","samplerCats":{"課程類":["形象五部曲","決策底層邏輯","實戰800","行銷底牌","職場案例集"],"工具類":["系統重組","社交不再尬","書籤組"],"資格證類":["QA群"],"講座類":["職場影響力講座","從被看見講座"]},"samplerCount":11,"samplerTotal":74031,"academy":{"name":"莊永濬","level":"打底層","expire":"2027/02/09","remaining":141000,"total_stored":176000,"ig":"yongjun_11.27","status":"啟用"},"overview":{"recentPurchase":"2026/05/04 23:06","metrics":{"私享專場":1,"付費直播":0,"正課打底":0,"限時活動":0,"LiveTalk":0,"受訓資格證":0,"聆聽資格證":0,"廣播集數":0,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":[],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["品牌群",1]]},{"type":"courselist","title":"正課區 · 打底","items":[]},{"type":"certs","title":"限時專區 · 活動參與","items":[],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":[],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":[],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"鄭雅婷","email":"since20120825@gmail.com","channel":"academy","samplerCats":{"課程類":["決策底層邏輯"],"工具類":["系統重組"]},"samplerCount":2,"samplerTotal":22666,"academy":{"name":"鄭雅婷","level":"打底層","expire":"2027/03/30","remaining":35534,"total_stored":152000,"ig":"Since0825","status":"啟用"},"overview":{"recentPurchase":"2026/05/30 16:56","metrics":{"私享專場":1,"付費直播":0,"正課打底":0,"限時活動":0,"LiveTalk":0,"受訓資格證":0,"聆聽資格證":0,"廣播集數":0,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":[],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[["36計 ‧ 人心穿透",10],["品牌群",3]]},{"type":"courselist","title":"正課區 · 打底","items":[]},{"type":"certs","title":"限時專區 · 活動參與","items":[],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":[],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":[],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"李玳維","email":"dx8643615@gmail.com","channel":"sampler","samplerCats":{"課程類":["形象五部曲","實戰800","職場案例集","行銷底牌"],"資格證類":["銷售思維群","QA群"],"工具類":["系統重組","社交不再尬","書籤組"],"講座類":["職場影響力講座","從被看見講座"]},"samplerCount":11,"samplerTotal":118228,"academy":null,"overview":null,"history":null},{"name":"吳曉彤","email":"nghiutungwork@gmail.com","channel":"academy","samplerCats":{},"samplerCount":0,"samplerTotal":0,"academy":{"name":"吳曉彤","level":"打底層","expire":"2027/05/09","remaining":79000,"total_stored":104000,"ig":"tung_vvi","status":"啟用"},"overview":{"recentPurchase":"2026/05/09 17:27","metrics":{"私享專場":1,"付費直播":0,"正課打底":0,"限時活動":0,"LiveTalk":0,"受訓資格證":0,"聆聽資格證":0,"廣播集數":0,"AI應用":0,"精煉研習班":0},"sections":[{"type":"certs","title":"私享專場 · 2026","items":["銷售思維建構群"],"cls":""},{"type":"certs","title":"付費直播 · 2025前","items":[],"cls":"legacy"},{"type":"subcats","title":"案例專區","subcats":[]},{"type":"courselist","title":"正課區 · 打底","items":[]},{"type":"certs","title":"限時專區 · 活動參與","items":[],"cls":""},{"type":"certs","title":"限時專區 · Live Talk","items":[],"cls":"live"},{"type":"certs","title":"訓練營 · 受訓資格證","items":[],"cls":""},{"type":"certs","title":"訓練營 · 聆聽資格證","items":[],"cls":"live"},{"type":"certs","title":"AI 應用專區","items":[],"cls":""},{"type":"courselist","title":"精煉研習班","items":[]}]},"history":null},{"name":"詹昕晏","email":"ann5510766@gmail.com","channel":"sampler","samplerCats":{"資格證類":["銷售思維群"],"工具類":["全域指令"],"講座類":["從被看見講座"],"課程類":["職場案例集"]},"samplerCount":4,"samplerTotal":69577,"academy":null,"overview":null,"history":null},{"name":"賴怡庭","email":"lorraine890918@gmail.com","channel":"sampler","samplerCats":{"資格證類":["銷售思維群"],"課程類":["形象五部曲","行銷底牌","實戰800"]},"samplerCount":4,"samplerTotal":63554,"academy":null,"overview":null,"history":null},{"name":"孫慧馨","email":"sunny390723@gmail.com","channel":"sampler","samplerCats":{"資格證類":["銷售思維群"],"課程類":["行銷底牌","實戰800","職場案例集"],"講座類":["從被看見講座"]},"samplerCount":5,"samplerTotal":61353,"academy":null,"overview":null,"history":null}]};
-const D=window.__PRINCIPAL__;const C=D.config;const PEOPLE=D.people;
-const SAMPLER_CATS=C.SAMPLER_CATS;const SESSIONS=C.sessionMeta||[];
-document.getElementById('pTitle').textContent=C.courseName||'會前學員洞察';
-document.getElementById('pSub').textContent=(C.courseDate||'')+(C.track?' · 追蹤：'+C.track:'')+' · '+PEOPLE.length+' 人';
+// ══ LOGO ══
+document.getElementById('logo-img').src='data:image/jpeg;base64,LOGO_B64_HERE';
 
-let curG='all',expanded=null;
-
-function fmt(n){return 'NT$'+(n||0).toLocaleString();}
-function eid(e){return e.replace(/[@.+]/g,'_');}
-function personIsAcademy(p){
-  if(C.platform==='dual')return p.channel==='academy'||p.channel==='both';
-  return C.platform==='academy';
-}
-function channelLabel(p){
-  if(C.platform!=='dual')return '';
-  if(p.channel==='both')return '<span class="tg tg-ch both">雙管道下單</span>';
-  if(p.channel==='academy')return '<span class="tg tg-ch">Academy 管道</span>';
-  return '<span class="tg tg-ch sampler">Sampler 管道</span>';
-}
-function attHist(p,si){return p.history&&p.history[si]?true:false;}
-function hasReplay(p,si){
-  if(!p.overview||!C.track)return false;
-  const prog=p.overview.sections.find(s=>s.type==='progress');
-  if(!prog)return false;
-  const t=prog.progress.find(pr=>pr.label.indexOf(C.track)>=0);
-  if(!t)return false;
-  return t.levels.indexOf(si+1)>=0;
-}
-function sessState(p,si){
-  const att=attHist(p,si),rep=hasReplay(p,si);
-  if(att&&rep)return {cls:'st-full',txt:'出席·有回放'};
-  if(att&&!rep)return {cls:'st-norep',txt:'出席·無回放'};
-  if(!att&&rep)return {cls:'st-rep',txt:'缺席·有回放'};
-  return {cls:'st-none',txt:'缺席·無回放'};
-}
-
-// ── 學習密度分類 ──
-function classify(p){
-  const histSessions=SESSIONS.filter(s=>!s.editable);
-  const total=histSessions.length||1;
-  let attended=0,replayed=0;
-  histSessions.forEach((s,si)=>{if(attHist(p,si))attended++;if(hasReplay(p,si))replayed++;});
-  const attRate=attended/total;
-  const recent=p.overview&&p.overview.recentPurchase?p.overview.recentPurchase:'';
-  // 最近購課是否在30天內（簡化：字串比對年月）
-  let recentActive=false;
-  if(recent){
-    const d=new Date(recent.replace(/\//g,'-').slice(0,10));
-    if(!isNaN(d)){const days=(Date.now()-d.getTime())/86400000;recentActive=days<=30;}
-  }
-  if(attRate>=0.8&&recentActive)return 'green';
-  if(attRate===0&&replayed===0&&!recentActive)return 'red';
-  if(attRate<0.4&&replayed===0&&!recentActive)return 'red';
-  return 'yellow';
-}
-const GROUP_META={
-  green:{icon:'🟢',title:'高度活躍',desc:'過往出席率高且近期有購課，可邀請分享或延伸交流'},
-  yellow:{icon:'🟡',title:'中等',desc:'部分出席或有補回放，可關心進度'},
-  red:{icon:'🔴',title:'需關注',desc:'出席率低、未補回放、近期無購課 — 今天若有來，建議重點互動'}
+// ══ DATA ══
+const DEFAULT_CFG={
+  groups:[
+    {name:'第一組',members:['謝蕎伊','黃又庭','蔡芷芸']},
+    {name:'第二組',members:['倪婍瑄','朱映蓉','賴又嘉']},
+    {name:'第三組',members:['田慧琳','陳怡伶','宋雨璇']}
+  ],
+  topics:[
+    '女人有能力賺錢，就不應該依賴另一半',
+    '一個無法帶給你正向啟發的人，那都是假感情',
+    '在感情裡，對方不支持你的選擇，比出軌更值得離開'
+  ]
 };
 
-function setG(g,btn){curG=g;document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render();}
-
-function render(){
-  const q=document.getElementById('search').value.trim().toLowerCase();
-  let pool=PEOPLE.filter(p=>!q||p.name.toLowerCase().includes(q));
-  pool.forEach(p=>{p.__g=classify(p);});
-  const list=document.getElementById('list');list.innerHTML='';
-
-  if(curG==='all'){
-    ['green','yellow','red'].forEach(g=>{
-      const items=pool.filter(p=>p.__g===g);
-      if(!items.length)return;
-      renderGroup(g,items,list);
-    });
-  }else{
-    const items=pool.filter(p=>p.__g===curG);
-    renderGroup(curG,items,list);
+const PT_ICONS=['⚖️','👤','💛','🔺','⚠️','📊'];
+const TD=[
+  {
+    pro_stance:'有能力不代表有義務，依賴是個人的選擇與自由',
+    con_stance:'有能力就有責任對等承擔，長期失衡讓關係脆弱',
+    pro:[{tag:'依賴定義',text:'依賴是主動的選擇，與能力高低無關'},{tag:'選擇自由',text:'有能力不代表有義務，選擇依賴是個人的權利'},{tag:'關係分工',text:'感情裡的依賴是信任的體現，不是弱點'}],
+    con:[{tag:'對等原則',text:'能力對等是健康關係的基礎，失衡會造成控制'},{tag:'風險意識',text:'完全依賴讓自己失去主動權，一旦關係破裂代價極高'},{tag:'長期影響',text:'依賴會讓個人成長停滯，影響自我價值感'}]
+  },
+  {
+    pro_stance:'真正的感情會讓你成為更好的人，帶不來成長的關係只是消耗',
+    con_stance:'感情的本質是陪伴與接納，不是每段關係都需要帶來啟發才算真實',
+    pro:[{tag:'感情本質',text:'真正的感情會讓你想成為更好的人，而不是停在原地'},{tag:'長期消耗',text:'無法啟發你的關係會讓你慢慢失去成長的方向'},{tag:'真實的愛',text:'愛一個人包括希望彼此都在進步，而不只是舒適共存'}],
+    con:[{tag:'陪伴價值',text:'感情的核心是接納與陪伴，不是每段關係都需要帶來啟發'},{tag:'啟發定義',text:'啟發不等於成長壓力，穩定的支持本身也是一種正向力量'},{tag:'關係彈性',text:'用啟發作為衡量標準，會讓感情變成一種績效評估'}]
+  },
+  {
+    pro_stance:'長期不被支持是慢性消耗，比一次背叛更難復原',
+    con_stance:'出軌是對承諾的直接破壞，不支持可以溝通成長',
+    pro:[{tag:'精神層面',text:'長期不被支持是慢性消耗，比一次背叛更難復原'},{tag:'核心需求',text:'感情的本質是看見彼此，不支持等於否定你這個人'},{tag:'方向分歧',text:'不支持意味著兩個人走向不同的未來，這是根本問題'}],
+    con:[{tag:'承諾破壞',text:'出軌是對關係承諾的直接破壞，性質不同於意見分歧'},{tag:'可修復性',text:'不支持可以溝通、可以成長，但信任一旦破裂難以修復'},{tag:'標準混淆',text:'把選擇上的分歧等同於背叛，會讓關係失去彈性空間'}]
   }
-  if(!list.children.length)list.innerHTML='<div class="empty" style="padding:30px 0;text-align:center">沒有符合的學員</div>';
+];
+const MATCHUPS=[{g1:0,g2:1,watch:2},{g1:1,g2:2,watch:0},{g1:2,g2:0,watch:1}];
+const CN=['一','二','三'];
+
+function fmtName(n){if(!n)return'';const t=n.trim();return(t.length<=2?t:t.slice(-2))+'學姊';}
+function buildFlow(){
+  return[
+    {id:'p1',label:'正方一辯',sub:'立論陳詞',side:'pro',secs:120},
+    {id:'c1',label:'反方一辯',sub:'立論陳詞',side:'con',secs:120},
+    {id:'p2',label:'正方二辯',sub:'攻辯反駁',side:'pro',secs:120},
+    {id:'c2',label:'反方二辯',sub:'攻辯反駁',side:'con',secs:120},
+    {id:'free',label:'自由辯論',sub:'各方2分鐘·每次≤30秒',side:'free',secs:0},
+    {id:'c3',label:'反方三辯',sub:'結辯總結',side:'con',secs:120},
+    {id:'p3',label:'正方三辯',sub:'結辯總結',side:'pro',secs:120},
+    {id:'judge',label:'結束總評',sub:'',side:'judge',secs:180}
+  ];
 }
 
-function renderGroup(g,items,list){
-  const meta=GROUP_META[g];
-  const gh=document.createElement('div');
-  gh.className='group';
-  gh.innerHTML='<div class="group-h"><span class="group-icon">'+meta.icon+'</span><span class="group-t">'+meta.title+'</span><span class="group-c">'+items.length+' 人</span></div><div class="group-desc">'+meta.desc+'</div>';
-  list.appendChild(gh);
-  items.forEach(p=>{
-    const card=document.createElement('div');
-    card.className='card';
-    let sm='';
-    SESSIONS.forEach((s,si)=>{
-      if(s.editable)return; // 會前版只顯示歷史場次
-      const st=sessState(p,si);
-      sm+='<span class="st '+st.cls+'"><span class="stm">'+s.label+'</span>'+st.txt+'</span>';
-    });
-    const tags=[];
-    const chL=channelLabel(p);if(chL)tags.push(chL);
-    if(p.academy){
-      tags.push('<span class="tg tg-lv">'+(p.academy.level||'')+'</span>');
-      tags.push('<span class="tg tg-spend">剩餘 '+fmt(p.academy.remaining)+'</span>');
-    }else{
-      tags.push('<span class="tg tg-spend">'+fmt(p.samplerTotal)+'</span>');
+// ── STATE ──
+let cfg=loadCfg();
+let rounds=[0,1,2].map(()=>({topic:null,topicIdx:null,proGrpIdx:null,conGrpIdx:null,proRoles:[],conRoles:[],drawStage:'none',started:false}));
+let usedTopicIdxs=[];
+let memberUsedRoles={};
+let curRound=0;
+let tIv=null,tRun=false,tLeft=0,tTotal=0,isJudge=false;
+let stepIdx=0,steps=[],stepsDone=[];
+let fdIv=null,fdRun=false,fdSide=null,fdProTotal=120,fdConTotal=120,fdSpeechLeft=30;
+
+function loadCfg(){try{const s=localStorage.getItem('gd7');return s?JSON.parse(s):JSON.parse(JSON.stringify(DEFAULT_CFG));}catch(e){return JSON.parse(JSON.stringify(DEFAULT_CFG));}}
+function saveCfgStore(){localStorage.setItem('gd7',JSON.stringify(cfg));}
+function fmt(s){if(s<0)s=0;const m=Math.floor(s/60);return`${m}:${(s%60).toString().padStart(2,'0')}`;}
+function shuffle(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}return r;}
+let _tid;
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(_tid);_tid=setTimeout(()=>t.classList.remove('show'),2400);}
+let actx=null;
+function audio(){if(!actx)actx=new(window.AudioContext||window.webkitAudioContext)();return actx;}
+function beep(f,d,v){try{const c=audio(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=f;g.gain.setValueAtTime(v||0.22,c.currentTime);g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+d);o.start();o.stop(c.currentTime+d);}catch(e){}}
+function warnBeep(){beep(800,0.1,0.16);setTimeout(()=>beep(800,0.1,0.16),170);}
+function endBeep(){beep(440,0.22,0.28);setTimeout(()=>beep(330,0.35,0.28),280);}
+function drawBeep(){beep(660,0.09,0.16);setTimeout(()=>beep(880,0.13,0.2),110);}
+
+// ── NAV ──
+function switchPage(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  document.querySelectorAll('.nav-tab')[p==='live'?0:1].classList.add('active');
+  if(p==='admin')renderAdmin();
+}
+
+// ── ADMIN ──
+function renderAdmin(){
+  const ag=document.getElementById('admin-groups');ag.innerHTML='';
+  cfg.groups.forEach((g,gi)=>{
+    const c=document.createElement('div');c.className='admin-gc';
+    c.innerHTML=`<h3>${g.name}</h3>`;
+    [0,1,2].forEach(i=>{const inp=document.createElement('input');inp.type='text';inp.value=g.members[i]||'';inp.placeholder=`成員 ${i+1}`;c.appendChild(inp);});
+    ag.appendChild(c);
+  });
+  const at=document.getElementById('admin-topics');at.innerHTML='';
+  cfg.topics.forEach(t=>addTopicRow(t));
+  const am=document.getElementById('admin-matchup');am.innerHTML='';
+  MATCHUPS.forEach((m,i)=>{
+    const d=document.createElement('div');d.className='mp-card';
+    d.innerHTML=`<strong>第 ${i+1} 場</strong>　${cfg.groups[m.g1]?.name||'?'} vs ${cfg.groups[m.g2]?.name||'?'}（持方現場抽）　｜　觀戰：${cfg.groups[m.watch]?.name||'?'}`;
+    am.appendChild(d);
+  });
+}
+function addTopicRow(val){
+  const at=document.getElementById('admin-topics');
+  const r=document.createElement('div');r.className='topic-row';
+  r.innerHTML=`<input type="text" class="topic-inp" value="${val||''}" placeholder="輸入辯題…"><button class="btn-del" onclick="this.parentElement.remove()">移除</button>`;
+  at.appendChild(r);
+}
+function saveConfig(){
+  document.querySelectorAll('.admin-gc').forEach((c,gi)=>{
+    cfg.groups[gi].members=[...c.querySelectorAll('input')].map(i=>i.value.trim()).filter(Boolean);
+  });
+  cfg.topics=[...document.querySelectorAll('.topic-inp')].map(i=>i.value.trim()).filter(Boolean);
+  saveCfgStore();toast('設定已儲存');
+}
+
+// ── ROUND BAR ──
+function renderRoundBar(){
+  const rb=document.getElementById('nav-rounds');rb.innerHTML='';
+  [0,1,2].forEach(i=>{
+    const rs=rounds[i];
+    const sub=rs.started?'辯論中':rs.drawStage==='con'?'已完成抽籤':rs.drawStage==='pro'?'已抽正方':rs.drawStage==='topic'?'已抽辯題':'待抽籤';
+    const btn=document.createElement('button');
+    btn.className='nav-round-btn'+(i===curRound?' active':'');
+    btn.innerHTML=`第 ${i+1} 場<span class="nr-sub">${sub}</span>`;
+    btn.onclick=()=>switchRound(i);
+    rb.appendChild(btn);
+  });
+}
+function switchRound(i){curRound=i;stopAll();renderRoundBar();renderRound();}
+function renderRound(){const rs=rounds[curRound];if(rs.started)showDebate();else showDraw();}
+
+// ── DRAW ──
+function showDraw(){
+  document.getElementById('draw-phase').style.display='block';
+  document.getElementById('debate-phase').style.display='none';
+  renderDrawUI();
+}
+
+function renderDrawUI(){
+  const rs=rounds[curRound];
+  const mu=MATCHUPS[curRound];
+  const wg=cfg.groups[mu.watch];
+  document.getElementById('obs-name').textContent=wg?`${wg.name}（${wg.members.map(fmtName).join('、')}）`:'—';
+
+  // Topic banner
+  const tbText=document.getElementById('tb-text');
+  const tbStances=document.getElementById('tb-stances');
+  const tbNum=document.getElementById('tb-num');
+  if(rs.topic){
+    tbText.textContent=rs.topic;tbText.classList.remove('empty');
+    tbNum.textContent=`辯題${CN[rs.topicIdx]||''}`;
+    if(rs.topicIdx!=null&&TD[rs.topicIdx]){
+      const td=TD[rs.topicIdx];
+      document.getElementById('tb-pro-stance').textContent=td.pro_stance;
+      document.getElementById('tb-con-stance').textContent=td.con_stance;
+      tbStances.style.display='grid';
     }
-    card.innerHTML='<div class="chead" onclick="toggle(this,&#39;'+p.email+'&#39;)"><span class="cname">'+p.name+'<span class="chevron" id="chev-'+eid(p.email)+'">▾</span></span><div class="ctags">'+tags.join('')+'</div><div class="sess-mini">'+sm+'</div></div>'+
-      '<div class="cbody" id="cb-'+eid(p.email)+'"></div>';
-    list.appendChild(card);
+  } else {
+    tbText.textContent='尚未抽出辯題';tbText.classList.add('empty');
+    tbNum.textContent='本場辯題';tbStances.style.display='none';
+  }
+
+  // Side cards
+  renderDrawSide('pro',rs);
+  renderDrawSide('con',rs);
+
+  // Show points ONLY after topic drawn AND that side drawn
+  const hasTopic = rs.topic && rs.topicIdx!=null && TD[rs.topicIdx];
+  const proDrawn = rs.drawStage==='pro'||rs.drawStage==='con';
+  const conDrawn = rs.drawStage==='con';
+  const td_draw = hasTopic ? TD[rs.topicIdx] : null;
+
+  if(hasTopic && proDrawn && td_draw){
+    renderPointsInCard('draw-pro-points','正方論點',td_draw.pro,'pro');
+    const proStanceEl = document.getElementById('draw-pro-stance');
+    if(proStanceEl){ proStanceEl.textContent=td_draw.pro_stance; proStanceEl.style.display='block'; }
+  } else {
+    const proPointsEl = document.getElementById('draw-pro-points');
+    if(proPointsEl) proPointsEl.innerHTML='<div class="side-points-label">正方論點</div><div style="color:var(--text-dim);font-size:12px;font-style:italic">抽出辯題後顯示</div>';
+    const proStanceEl = document.getElementById('draw-pro-stance');
+    if(proStanceEl) proStanceEl.style.display='none';
+  }
+
+  if(hasTopic && conDrawn && td_draw){
+    renderPointsInCard('draw-con-points','反方論點',td_draw.con,'con');
+    const conStanceEl = document.getElementById('draw-con-stance');
+    if(conStanceEl){ conStanceEl.textContent=td_draw.con_stance; conStanceEl.style.display='block'; }
+  } else {
+    const conPointsEl = document.getElementById('draw-con-points');
+    if(conPointsEl) conPointsEl.innerHTML='<div class="side-points-label">反方論點</div><div style="color:var(--text-dim);font-size:12px;font-style:italic">抽出辯題後顯示</div>';
+    const conStanceEl = document.getElementById('draw-con-stance');
+    if(conStanceEl) conStanceEl.style.display='none';
+  }
+
+  document.getElementById('btn-topic').disabled=!!rs.topic;
+  document.getElementById('btn-pro').disabled=!rs.topic||rs.drawStage==='pro'||rs.drawStage==='con';
+  document.getElementById('btn-con').disabled=rs.drawStage!=='pro';
+  document.getElementById('btn-go').disabled=rs.drawStage!=='con';
+
+}
+
+function renderPointsInCard(elId,label,points,side){
+  const el=document.getElementById(elId);
+  const colorClass=side==='pro'?'pro-card':'con-card';
+  el.innerHTML=`<div class="side-points-label">${label}</div>`+
+    points.map((p,i)=>`
+      <div class="pt-row">
+        <div class="pt-icon">${['⚖️','👤','💛','🔺','⚠️','📊'][i]||'•'}</div>
+        <div class="pt-body">
+          <div class="pt-tag">${p.tag}</div>
+          <div class="pt-text">${p.text}</div>
+        </div>
+      </div>`).join('');
+  // Apply color to tags based on side
+  el.querySelectorAll('.pt-tag').forEach(t=>t.style.color=side==='pro'?'var(--pro-icon)':'var(--con-icon)');
+  el.querySelectorAll('.pt-icon').forEach(i=>i.style.background=side==='pro'?'var(--pro-bg)':'var(--con-bg)');
+}
+
+function renderDrawSide(side,rs){
+  const drawn=(side==='pro'&&(rs.drawStage==='pro'||rs.drawStage==='con'))||(side==='con'&&rs.drawStage==='con');
+  const gIdx=side==='pro'?rs.proGrpIdx:rs.conGrpIdx;
+  const grp=gIdx!=null?cfg.groups[gIdx]:null;
+  const roles=side==='pro'?rs.proRoles:rs.conRoles;
+  const labels=['一辯','二辯','三辯'];
+
+  document.getElementById(`draw-${side}-group`).textContent=drawn&&grp?grp.name:'—';
+  const rosterEl=document.getElementById(`draw-${side}-roster`);
+  rosterEl.innerHTML=labels.map((l,ri)=>`
+    <div class="side-rr">
+      <span class="side-role">${l}</span>
+      <span class="side-member" style="${drawn?'':'color:var(--text-dim)'}">${drawn&&grp?fmtName(grp.members[roles[ri]]):'—'}</span>
+    </div>`).join('');
+}
+
+// ── DRAW TOPIC ──
+function drawTopic(){
+  const available=cfg.topics.map((t,i)=>({t,i})).filter(x=>!usedTopicIdxs.includes(x.i));
+  if(!available.length){toast('辯題已用完');return;}
+  const chosen=available[Math.floor(Math.random()*available.length)];
+  const el=document.getElementById('tb-text');
+  el.classList.remove('empty');
+  let tick=0;
+  const iv=setInterval(()=>{
+    el.textContent=available[Math.floor(Math.random()*available.length)].t;
+    el.style.opacity=tick%2?'0.5':'0.9';tick++;
+    if(tick>18){
+      clearInterval(iv);el.style.opacity='1';
+      rounds[curRound].topic=chosen.t;rounds[curRound].topicIdx=chosen.i;
+      usedTopicIdxs.push(chosen.i);
+      beep(660,0.2,0.28);renderRoundBar();renderDrawUI();
+    }
+  },80);
+}
+
+// ── DRAW SIDE ──
+function drawSide(side){
+  const rs=rounds[curRound];const mu=MATCHUPS[curRound];
+  let gIdx;
+  if(side==='pro'){
+    gIdx=Math.random()<0.5?mu.g1:mu.g2;
+    rs.proGrpIdx=gIdx;rs.conGrpIdx=(gIdx===mu.g1)?mu.g2:mu.g1;
+  } else { gIdx=rs.conGrpIdx; }
+  const grp=cfg.groups[gIdx];if(!grp){toast('群組設定有誤');return;}
+  const members=grp.members;
+  const usedByMember=members.map(m=>memberUsedRoles[m]||new Set());
+  const perms=[[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]];
+  const valid=perms.filter(p=>p.every((mi,ri)=>!usedByMember[mi].has(ri)));
+  let assignment,hasConflict=false;
+  if(valid.length>0){assignment=valid[Math.floor(Math.random()*valid.length)];}
+  else{hasConflict=true;assignment=shuffle([0,1,2]);}
+  showSlotModal((side==='pro'?'正方':'反方')+'抽籤',grp.name,members,['一辯','二辯','三辯'],assignment,hasConflict,()=>{
+    assignment.forEach((mi,ri)=>{const nm=members[mi];if(!memberUsedRoles[nm])memberUsedRoles[nm]=new Set();memberUsedRoles[nm].add(ri);});
+    if(side==='pro'){rs.proRoles=assignment;rs.drawStage='pro';}
+    else{rs.conRoles=assignment;rs.drawStage='con';}
+    closeModal();renderRoundBar();renderDrawUI();
   });
 }
 
-function toggle(el,email){
-  const body=document.getElementById('cb-'+eid(email));
-  const chev=document.getElementById('chev-'+eid(email));
-  const open=body.classList.contains('open');
-  // collapse all others
-  document.querySelectorAll('.cbody.open').forEach(b=>{b.classList.remove('open');b.innerHTML='';});
-  document.querySelectorAll('.chevron').forEach(c=>c.textContent='▾');
-  if(!open){
-    const p=PEOPLE.find(x=>x.email===email);
-    body.innerHTML=detailHTML(p);
-    body.classList.add('open');
-    chev.textContent='▴';
+function showSlotModal(eye,title,members,roleLabels,finalOrder,hasConflict,onConfirm){
+  document.getElementById('m-eye').textContent=eye;
+  document.getElementById('m-ttl').textContent=title;
+  document.getElementById('m-note').innerHTML=hasConflict?'<div class="conflict-warn">⚠️ 部分學姊已在其他場次擔任相同辯位，此次採備用隨機分配。</div>':'';
+  document.getElementById('m-btns').innerHTML='';
+  const sc=document.getElementById('m-slots');sc.innerHTML='';
+  let done=0;
+  roleLabels.forEach((label,ri)=>{
+    const row=document.createElement('div');row.className='slot-row';
+    row.innerHTML=`<span class="slot-role-tag">${label}</span><div class="slot-name-wrap"><span class="slot-name spinning" id="sn-${ri}">?</span></div><span class="slot-check" id="sc-${ri}">✓</span>`;
+    sc.appendChild(row);
+  });
+  document.getElementById('modal').classList.add('open');
+  roleLabels.forEach((_,ri)=>{
+    setTimeout(()=>{
+      const el=document.getElementById('sn-'+ri);const ck=document.getElementById('sc-'+ri);
+      let ticks=0;const total=20+ri*10;
+      const iv=setInterval(()=>{
+        el.textContent=fmtName(members[Math.floor(Math.random()*members.length)]);ticks++;
+        if(ticks>=total){
+          clearInterval(iv);el.textContent=fmtName(members[finalOrder[ri]]);
+          el.classList.remove('spinning');ck.classList.add('vis');drawBeep();done++;
+          if(done===roleLabels.length){
+            setTimeout(()=>{
+              const btn=document.createElement('button');btn.className='btn btn-navy';
+              btn.textContent='確認抽籤結果';btn.onclick=onConfirm;
+              document.getElementById('m-btns').appendChild(btn);
+            },300);
+          }
+        }
+      },70);
+    },ri*440);
+  });
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+function startDebate(){rounds[curRound].started=true;renderRoundBar();showDebate();}
+function backToDraw(){stopAll();document.getElementById('draw-phase').style.display='block';document.getElementById('debate-phase').style.display='none';renderDrawUI();}
+
+// ── DEBATE ──
+function showDebate(){
+  document.getElementById('draw-phase').style.display='none';
+  document.getElementById('debate-phase').style.display='block';
+  const rs=rounds[curRound];
+  const proGrp=cfg.groups[rs.proGrpIdx];
+  const conGrp=cfg.groups[rs.conGrpIdx];
+  const td=rs.topicIdx!=null?TD[rs.topicIdx]:null;
+  const roleLabels=['一辯','二辯','三辯'];
+
+  // Topic banner
+  document.getElementById('dtb-num').textContent=`辯題${CN[rs.topicIdx]||''}`;
+  document.getElementById('dtb-text').textContent=rs.topic||'—';
+  if(td){document.getElementById('dtb-pro-stance').textContent=td.pro_stance;document.getElementById('dtb-con-stance').textContent=td.con_stance;}
+
+  // Side info
+  function buildSideInfo(grp,roles,isProSide){
+    if(!grp)return'';
+    const stance=td?(isProSide?td.pro_stance:td.con_stance):'';
+    return`
+      <div class="side-tag-row">
+        <div class="side-icon">${isProSide?'🛡':'⚔️'}</div>
+        <span class="side-tag">${isProSide?'正方':'反方'}</span>
+      </div>
+      ${stance?`<div class="side-stance">${stance}</div>`:''}
+      <div class="side-group">${grp.name}</div>
+      <div class="side-roster">${roleLabels.map((r,i)=>`<div class="side-rr"><span class="side-role">${r}</span><span class="side-member">${fmtName(grp.members[roles[i]])}</span></div>`).join('')}</div>`;
   }
+  document.getElementById('debate-pro-info').innerHTML=buildSideInfo(proGrp,rs.proRoles,true);
+  document.getElementById('debate-con-info').innerHTML=buildSideInfo(conGrp,rs.conRoles,false);
+
+  // Points
+  if(td){
+    renderDebatePoints('debate-pro-points','正方論點',td.pro,'pro');
+    renderDebatePoints('debate-con-points','反方論點',td.con,'con');
+  }
+
+  // FD grp names
+  document.getElementById('fd-pro-grp').textContent=proGrp?.name||'正方';
+  document.getElementById('fd-con-grp').textContent=conGrp?.name||'反方';
+
+  // Timer side stance
+  updateTzSide('pro',proGrp,td?td.pro_stance:'');
+
+  steps=buildFlow();
+  steps.forEach(s=>{
+    const ri={'p1':0,'p2':1,'p3':2,'c1':0,'c2':1,'c3':2}[s.id];
+    if(s.id?.startsWith('p')&&proGrp)s.speaker=fmtName(proGrp.members[rs.proRoles[ri]]);
+    else if(s.id?.startsWith('c')&&conGrp)s.speaker=fmtName(conGrp.members[rs.conRoles[ri]]);
+    else if(s.id==='free')s.speaker='自由辯論';
+    else if(s.id==='judge')s.speaker='校長';
+    else s.speaker='—';
+  });
+  stepsDone=new Array(steps.length).fill(false);stepIdx=0;
+  renderFlowSteps();loadStep(0);
 }
 
-function collapse(title,summary,body){const id='x'+Math.random().toString(36).slice(2,8);return '<div class="cs" onclick="var e=document.getElementById(&#39;'+id+'&#39;);e.classList.toggle(&#39;open&#39;)"><span>'+title+'</span><span class="ct">'+summary+' ▾</span></div><div class="cb" id="'+id+'">'+body+'</div>';}
-
-function detailHTML(p){
-  const ov=p.overview;const isAc=personIsAcademy(p);let h='';
-  const top=[];
-  if(p.academy){top.push('<div class="hl-box"><div class="hl-v">'+(p.academy.level||'—')+'</div><div class="hl-l">Academy 等級</div></div>');top.push('<div class="hl-box"><div class="hl-v">'+fmt(p.academy.remaining)+'</div><div class="hl-l">剩餘點數</div></div>');}
-  const rec=ov&&ov.recentPurchase?ov.recentPurchase.slice(0,10):'—';
-  top.push('<div class="hl-box"><div class="hl-v">'+rec+'</div><div class="hl-l">最近購課</div></div>');
-  top.push('<div class="hl-box"><div class="hl-v">'+(isAc&&p.academy?fmt(p.academy.total_stored):fmt(p.samplerTotal))+'</div><div class="hl-l">'+(isAc&&p.academy?'Academy 總儲值':'Sampler 消費')+'</div></div>');
-  h+='<div class="hl-row">'+top.join('')+'</div>';
-
-  // 歷史出席（四態）
-  const hist=SESSIONS.filter(s=>!s.editable);
-  if(hist.length){
-    h+='<div style="margin-bottom:10px">';
-    SESSIONS.forEach((s,si)=>{
-      if(s.editable)return;
-      const st=sessState(p,si);
-      h+='<div class="sess-hist-row"><span>'+s.label+(s.date?' · '+s.date:'')+'</span><span class="st '+st.cls+'">'+st.txt+'</span></div>';
-    });
-    h+='</div>';
-  }
-
-  if(C.track&&ov){const prog=ov.sections.find(s=>s.type==='progress');const t=prog?prog.progress.find(pr=>pr.label.indexOf(C.track)>=0):null;h+='<div class="track-hero"><div class="track-t">本堂課重點 · '+C.track+' 回放</div>';if(t){const mx=Math.max.apply(null,t.levels);let c='';for(let lv=1;lv<=mx;lv++)c+='<span class="lv '+(t.levels.indexOf(lv)>=0?'y':'n')+'">M'+lv+'</span>';h+='<div class="prow"><div class="tags">'+c+'</div><b style="color:var(--gold)">'+t.levels.length+' 級</b></div>';}else h+='<div class="empty">尚無 '+C.track+' 複習紀錄</div>';h+='</div>';}
-
-  const gc=(t)=>ov?ov.sections.find(s=>s.type==='certs'&&s.title===t):null;
-  const gl=(kw)=>ov?ov.sections.find(s=>s.type==='courselist'&&s.title.indexOf(kw)>=0):null;
-  const sub=ov?ov.sections.find(s=>s.type==='subcats'):null;
-  if(ov){
-    const prog=ov.sections.find(s=>s.type==='progress');
-    if(prog&&prog.progress.length&&!C.track){let b='';prog.progress.forEach(pr=>{const mx=Math.max.apply(null,pr.levels);let c='';for(let lv=1;lv<=mx;lv++)c+='<span class="lv '+(pr.levels.indexOf(lv)>=0?'y':'n')+'">M'+lv+'</span>';b+='<div class="prow"><div class="pn">'+pr.label+'</div><div class="tags">'+c+'</div></div>';});h+=collapse('回放',prog.progress.length+' 專場',b);}
-    h+='<div class="glabel">錄播課程：主題精修</div>';
-    const mn=gl('正課');if(mn)h+=collapse('正課區',mn.items.length+' 堂',mn.items.length?'<div style="font-size:12px;color:var(--muted);columns:2">'+mn.items.map(x=>'<div>· '+x+'</div>').join('')+'</div>':'<div class="empty">無</div>');
-    if(sub){const tot=sub.subcats.reduce((a,kv)=>a+kv[1],0);h+=collapse('案例專區',tot+' 集',sub.subcats.map(kv=>'<div class="kv"><span class="k">'+kv[0]+'</span><span>'+kv[1]+' 集</span></div>').join(''));}
-    const ai=gc('AI 應用專區');if(ai)h+=collapse('AI應用專區',ai.items.length+' 堂',ai.items.length?'<div class="tags">'+ai.items.map(x=>'<span class="tag">'+x+'</span>').join('')+'</div>':'<div class="empty">無</div>');
-    if(ov.metrics['廣播集數']!=null)h+='<div class="cs" style="cursor:default"><span>廣播專區</span><span class="ct">'+ov.metrics['廣播集數']+' 集</span></div>';
-    h+='<div class="glabel">即時交流：資格證</div>';
-    const pv=gc('私享專場 · 2026');if(pv)h+=collapse('私享專場',pv.items.length+' 堂',pv.items.length?'<div class="tags">'+pv.items.map(x=>'<span class="tag">'+x+'</span>').join('')+'</div>':'<div class="empty">無</div>');
-    const lg=gc('付費直播 · 2025前');if(lg)h+=collapse('付費直播',lg.items.length+' 堂',lg.items.length?'<div class="tags">'+lg.items.map(x=>'<span class="tag legacy">'+x+'</span>').join('')+'</div>':'<div class="empty">無</div>');
-    const lt=gc('限時專區 · Live Talk');if(lt)h+=collapse('Live Talk',lt.items.length+' 堂',lt.items.length?'<div class="tags">'+lt.items.map(x=>'<span class="tag live">'+x+'</span>').join('')+'</div>':'<div class="empty">無</div>');
-    const tr=gc('訓練營 · 受訓資格證'),ls=gc('訓練營 · 聆聽資格證');
-    if(tr||ls){const tc=tr?tr.items.length:0,lc=ls?ls.items.length:0;let b='<div style="margin-bottom:6px"><div style="font-size:12px;font-weight:600;margin-bottom:3px">‧ 受訓資格證（'+tc+'）</div>'+(tc?'<div class="tags">'+tr.items.map(x=>'<span class="tag">'+x+'</span>').join('')+'</div>':'<div class="empty">無</div>')+'</div><div><div style="font-size:12px;font-weight:600;margin-bottom:3px">‧ 聆聽資格證（'+lc+'）</div>'+(lc?'<div class="tags">'+ls.items.map(x=>'<span class="tag live">'+x+'</span>').join('')+'</div>':'<div class="empty">無</div>')+'</div>';h+=collapse('訓練營','受訓 '+tc+' / 聆聽 '+lc,b);}
-    const act=gc('限時專區 · 活動參與');if(act)h+=collapse('現場活動',act.items.length+' 次',act.items.length?'<div class="tags">'+act.items.map(x=>'<span class="tag">'+x+'</span>').join('')+'</div>':'<div class="empty">無</div>');
-    const rf=gl('精煉');if(rf)h+=collapse('精煉研習班',rf.items.length+' 堂',rf.items.length?'<div style="font-size:12px;color:var(--muted)">'+rf.items.map(x=>'<div>· '+x+'</div>').join('')+'</div>':'<div class="empty">無</div>');
-  }
-  if(p.academy){let b='<div class="kv"><span class="k">總儲值</span><span>'+fmt(p.academy.total_stored)+'</span></div><div class="kv"><span class="k">等級到期</span><span>'+(p.academy.expire||'—')+'</span></div>'+(p.academy.ig?'<div class="kv"><span class="k">IG</span><span>@'+p.academy.ig+'</span></div>':'');h+='<div class="glabel">Academy 帳戶</div>'+collapse('帳戶明細',p.academy.level||'',b);}
-  let sb='';if(p.samplerCount>0){SAMPLER_CATS.concat(['其他']).forEach(cat=>{if(p.samplerCats[cat]&&p.samplerCats[cat].length)sb+='<div style="margin-bottom:6px"><span style="font-size:10px;color:var(--gold);font-weight:600">'+cat+'</span><div class="tags" style="margin-top:3px">'+p.samplerCats[cat].map(x=>'<span class="tag">'+x+'</span>').join('')+'</div></div>';});}else sb='<div class="empty">無 Sampler 購課</div>';
-  h+='<div class="glabel">Sampler 購課'+(isAc?'（補充）':'')+'</div>'+collapse('Sampler 購課',p.samplerCount+' 堂 · '+fmt(p.samplerTotal),sb);
-  return h;
+function renderDebatePoints(elId,label,points,side){
+  const el=document.getElementById(elId);
+  el.innerHTML=`<div class="side-points-label">${label}</div>`+
+    points.map((p,i)=>`
+      <div class="pt-row">
+        <div class="pt-icon" style="background:${side==='pro'?'var(--pro-bg)':'var(--con-bg)'}">${['⚖️','👤','💛','🔺','⚠️','📊'][i]||'•'}</div>
+        <div class="pt-body">
+          <div class="pt-tag" style="color:${side==='pro'?'var(--pro-icon)':'var(--con-icon)'}">${p.tag}</div>
+          <div class="pt-text">${p.text}</div>
+        </div>
+      </div>`).join('');
 }
 
-render();
+function updateTzSide(side,grp,stance){
+  const tzSide=document.getElementById('tz-side');
+  const tzIcon=document.getElementById('tz-icon');
+  const tzLabel=document.getElementById('tz-side-label');
+  const tzStance=document.getElementById('tz-stance');
+  if(side==='pro'){
+    tzSide.className='tz-side pro-tz';tzIcon.textContent='🛡';
+    tzLabel.textContent=(grp?.name||'正方')+'　發言中';tzLabel.style.color='var(--pro-icon)';
+  } else if(side==='con'){
+    tzSide.className='tz-side con-tz';tzIcon.textContent='⚔️';
+    tzLabel.textContent=(grp?.name||'反方')+'　發言中';tzLabel.style.color='var(--con-icon)';
+  } else {
+    tzSide.className='tz-side';tzIcon.textContent='⏱';
+    tzLabel.textContent='校長總評';tzLabel.style.color='var(--text-dim)';
+  }
+  tzStance.textContent=stance||'';
+}
+
+function renderFlowSteps(){
+  const el=document.getElementById('flow-steps');el.innerHTML='';
+  steps.forEach((s,i)=>{
+    if(i>0){const dash=document.createElement('div');dash.className='flow-dash';el.appendChild(dash);}
+    const step=document.createElement('div');
+    step.className='flow-step'+(i===stepIdx?' active':stepsDone[i]?' done':'');
+    step.innerHTML=`
+      <div class="flow-step-bubble">${String(i+1).padStart(2,'0')}</div>
+      <div class="flow-step-name">${s.label}</div>
+      <div class="flow-step-time">${s.id==='free'?'4:00':fmt(s.secs)}</div>`;
+    step.onclick=()=>{if(tRun)timerPause();stepsDone[stepIdx]=true;stepIdx=i;loadStep(i);};
+    el.appendChild(step);
+  });
+}
+
+function loadStep(i){
+  stopAll();const s=steps[i];isJudge=(s.id==='judge');
+  const isFree=s.id==='free';
+  document.getElementById('timer-zone').style.display=isFree?'none':'block';
+  document.getElementById('fd-zone').className='fd-zone'+(isFree?' vis':'');
+  document.getElementById('fd-btns').style.display=isFree?'flex':'none';
+  document.getElementById('btn-ts').style.display=isFree?'none':'inline-flex';
+  document.getElementById('btn-tp').style.display='none';
+  if(isFree){fdProTotal=120;fdConTotal=120;fdSide=null;fdRun=false;fdSpeechLeft=30;updateFd();}
+  else{
+    tLeft=s.secs;tTotal=s.secs;
+    document.getElementById('tz-speaker').textContent=s.speaker||'—';
+    document.getElementById('tz-step').textContent=s.label+(s.sub?'　·　'+s.sub:'');
+    document.getElementById('tz-time').textContent=fmt(tLeft);
+    document.getElementById('tz-time').className='tz-time';
+    document.getElementById('tz-bar').style.width='100%';
+    document.getElementById('tz-bar').className='tz-bar';
+    const rs=rounds[curRound];
+    const proGrp=cfg.groups[rs.proGrpIdx];const conGrp=cfg.groups[rs.conGrpIdx];
+    const td=rs.topicIdx!=null?TD[rs.topicIdx]:null;
+    if(s.side==='pro')updateTzSide('pro',proGrp,td?.pro_stance||'');
+    else if(s.side==='con')updateTzSide('con',conGrp,td?.con_stance||'');
+    else if(s.side==='judge')updateTzSide('judge',null,'');
+    else updateTzSide('pro',proGrp,td?.pro_stance||'');
+  }
+  renderFlowSteps();
+}
+
+function timerStart(){
+  if(tRun)return;tRun=true;
+  document.getElementById('btn-ts').style.display='none';
+  document.getElementById('btn-tp').style.display='inline-flex';
+  tIv=setInterval(()=>{
+    tLeft--;const pct=(tLeft/tTotal)*100;
+    const td_el=document.getElementById('tz-time');const bar=document.getElementById('tz-bar');
+    td_el.textContent=fmt(tLeft);bar.style.width=pct+'%';
+    if(isJudge){
+      if(tLeft<=30&&tLeft>0){td_el.className='tz-time judge-warn';bar.className='tz-bar judge-warn';}
+      else if(tLeft<=0){td_el.className='tz-time judge-danger';}
+      else{td_el.className='tz-time';bar.className='tz-bar';}
+    } else {
+      if(tLeft<=10&&tLeft>0){td_el.className='tz-time danger';bar.className='tz-bar danger';warnBeep();}
+      else if(tLeft<=30){td_el.className='tz-time warn';bar.className='tz-bar warn';}
+      else{td_el.className='tz-time';bar.className='tz-bar';}
+    }
+    if(tLeft<=0){clearInterval(tIv);tRun=false;if(!isJudge)endBeep();document.getElementById('btn-ts').style.display='inline-flex';document.getElementById('btn-tp').style.display='none';}
+  },1000);
+}
+function timerPause(){tRun=false;clearInterval(tIv);document.getElementById('btn-ts').style.display='inline-flex';document.getElementById('btn-tp').style.display='none';}
+function timerReset(){timerPause();tLeft=tTotal;document.getElementById('tz-time').textContent=fmt(tLeft);document.getElementById('tz-time').className='tz-time';document.getElementById('tz-bar').style.width='100%';document.getElementById('tz-bar').className='tz-bar';}
+function timerNext(){timerPause();stepsDone[stepIdx]=true;if(stepIdx<steps.length-1){stepIdx++;loadStep(stepIdx);}else showEndModal();}
+
+function fdStart(side){
+  if(side==='pro'&&fdProTotal<=0){toast('正方時間已用完');return;}
+  if(side==='con'&&fdConTotal<=0){toast('反方時間已用完');return;}
+  fdStop();fdRun=true;fdSide=side;fdSpeechLeft=30;
+  document.getElementById('fd-pro').classList.toggle('active-fd',side==='pro');
+  document.getElementById('fd-con').classList.toggle('active-fd',side==='con');
+  fdIv=setInterval(()=>{
+    fdSpeechLeft--;
+    if(fdSide==='pro')fdProTotal--;else fdConTotal--;
+    if(fdSpeechLeft<=10&&fdSpeechLeft>0)warnBeep();
+    if(fdSpeechLeft<=0){endBeep();fdStop();}
+    else if(fdProTotal<=0||fdConTotal<=0){fdStop();}
+    updateFd();
+  },1000);updateFd();
+}
+function fdStop(){fdRun=false;clearInterval(fdIv);fdSide=null;document.getElementById('fd-pro').classList.remove('active-fd');document.getElementById('fd-con').classList.remove('active-fd');}
+function updateFd(){
+  const pt=document.getElementById('fd-pro-total'),ct=document.getElementById('fd-con-total');
+  const ps=document.getElementById('fd-pro-speech'),cs=document.getElementById('fd-con-speech');
+  const pb=document.getElementById('fd-pro-bar'),cb=document.getElementById('fd-con-bar');
+  pt.textContent=fmt(fdProTotal);ct.textContent=fmt(fdConTotal);
+  pt.className='fd-total'+(fdProTotal<=10?' danger':fdProTotal<=30?' warn':'');
+  ct.className='fd-total'+(fdConTotal<=10?' danger':fdConTotal<=30?' warn':'');
+  const sv=fdRun?fdSpeechLeft:30;const sp=(sv/30)*100;
+  if(fdSide==='pro'){
+    ps.textContent=fmt(sv);pb.style.width=sp+'%';
+    ps.className='fd-speech-time'+(sv<=5?' danger':sv<=10?' warn':'');
+    pb.className='fd-bar'+(sv<=5?' danger':sv<=10?' warn':'');
+  } else {ps.textContent='0:30';pb.style.width='100%';ps.className='fd-speech-time';pb.className='fd-bar';}
+  if(fdSide==='con'){
+    cs.textContent=fmt(sv);cb.style.width=sp+'%';
+    cs.className='fd-speech-time'+(sv<=5?' danger':sv<=10?' warn':'');
+    cb.className='fd-bar'+(sv<=5?' danger':sv<=10?' warn':'');
+  } else {cs.textContent='0:30';cb.style.width='100%';cs.className='fd-speech-time';cb.className='fd-bar';}
+  document.getElementById('fd-btn-pro').disabled=fdProTotal<=0;
+  document.getElementById('fd-btn-con').disabled=fdConTotal<=0;
+}
+
+function stopAll(){clearInterval(tIv);clearInterval(fdIv);tRun=false;fdRun=false;}
+
+function showEndModal(){
+  document.getElementById('m-eye').textContent='本場結束';document.getElementById('m-ttl').textContent='全部環節完成';
+  document.getElementById('m-slots').innerHTML='';document.getElementById('m-note').textContent='';
+  const mb=document.getElementById('m-btns');mb.innerHTML='';
+  if(curRound<2){const btn=document.createElement('button');btn.className='btn btn-navy';btn.textContent=`前往第 ${curRound+2} 場`;btn.onclick=()=>{closeModal();switchRound(curRound+1);};mb.appendChild(btn);}
+  const cb=document.createElement('button');cb.className='btn btn-outline';cb.textContent='關閉';cb.onclick=closeModal;mb.appendChild(cb);
+  document.getElementById('modal').classList.add('open');
+}
+
+// ── INIT ──
+renderRoundBar();showDraw();
 </script>
 </body>
 </html>
